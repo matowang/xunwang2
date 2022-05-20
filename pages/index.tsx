@@ -1,12 +1,17 @@
 import type { NextPage } from 'next'
+
 import Image from 'next/image';
+import Link from 'next/link';
+import Masonry from '@mui/lab/Masonry';
 
 import XunWorkingImg from '../public/images/xun-working.jpg';
 
+import works from '../data/works.json';
+
 const Home: NextPage = () => {
   return (
-    <div className='pt-40'>
-      <section className='items-center grid md:grid-cols-2 max-w-7xl mx-auto gap-10 p-5'>
+    <div className=''>
+      <section className='py-80 items-center grid md:grid-cols-2 max-w-7xl mx-auto gap-10 p-5'>
         <div className=''>
           <Image src={XunWorkingImg} alt='xun wang working' width={2000} height={1333} placeholder='blur' />
         </div>
@@ -15,6 +20,20 @@ const Home: NextPage = () => {
           <p>After graduating from the New York Institute of Technology, he worked in well-known visual effects companies. This allowed him to develop his skills in 3D animation and digital art production. These experiences inspired him to merge traditional and digital art mediums. Through continuous exploration based on traditional skills, coupled with high-tech expertise, he cultivated a set of unique personal cross-generational artworks, which he calls the "Space in Time" sculptures.</p>
         </div>
       </section>
+      <Masonry columns={{ xs: 1, sm: 3, md: 4 }} spacing={{ xs: 0, sm: 2 }}>
+        {works.map(work => (
+          <div className='group relative text-white' key={work.id}>
+            <div className='hidden group-hover:grid grid-rows-2 absolute bg-black/50 w-full h-full p-12'>
+              <div className=''>
+                <h2>{work.cnName}<br />{work.name}</h2>
+                <div>{work.year}</div>
+              </div>
+              <Link href={`/work/${work.id}`}><a className='justify-self-end self-end'><button>See More</button></a></Link>
+            </div>
+            <img className='w-full' alt={work.name} src={`/images/works/${work.id}/1.jpg`} />
+          </div>
+        ))}
+      </Masonry>
     </div>
   )
 }
