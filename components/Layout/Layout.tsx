@@ -8,7 +8,7 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
     return (
         <>
-            <header className="fixed flex w-full p-4">
+            <header className="fixed flex w-full p-4 z-50">
                 <h1 className="grow"><Link href="/"><a>Xun Wang</a></Link></h1>
                 <ul className="flex gap-4">
                     <li>
