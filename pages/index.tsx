@@ -15,9 +15,11 @@ const Home: NextPage = () => {
         <source src="/hero-video.mp4" />
         Your browser does not support the video tag.
       </video>
-      <section className='w-full h-screen relative grid items-end grid-cols-2 p-20 bg-gradient-to-t from-black via-transparent'>
+      <section className='w-full h-screen relative grid sm:grid-cols-2 justify-items-start align-end sm:flex-row sm:justify-between items-end p-10 sm:p-20 bg-gradient-to-t from-black via-transparent'>
         <h1 className='text-stone-300 text-3xl'>王尋<br />Xun Wang</h1>
-        <button className='justify-self-end text-stone-400'>Watch Full Documentary on YouTube</button>
+        <a className="sm:justify-self-end" href="https://youtu.be/rXdJrMFju5Y" target='_blank'>
+          <button className=' text-stone-400'>Watch Full Documentary on YouTube</button>
+        </a>
       </section>
       <div className='bg-white relative'>
         <section className='md:py-80 items-center grid md:grid-cols-2 max-w-7xl mx-auto gap-10 p-5'>
