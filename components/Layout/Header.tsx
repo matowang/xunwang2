@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { useRouter } from "next/router";
+import { useTranslation } from 'next-i18next';
 
 import useScroll from "../../hooks/useScroll";
 
@@ -12,7 +13,7 @@ const routeOptions: any = {
 
 const Header = () => {
     const router = useRouter();
-
+    const { t, i18n } = useTranslation('common');
     const scroll = useScroll();
     return (
         <header className="fixed flex w-full p-4 transition-background ease-in-out duration-300 z-50 text-white" style={{
@@ -29,6 +30,10 @@ const Header = () => {
                 </li>
                 <li>
                     <Link href="/contacts"><a>Contacts</a></Link>
+                </li>
+                <div>|</div>
+                <li>
+                    <Link href={router.asPath} locale={i18n.language === 'en' ? 'cn' : 'en'}><a>{t('changeLang')}</a></Link>
                 </li>
             </ul>
         </header>

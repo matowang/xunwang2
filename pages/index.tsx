@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -6,11 +6,17 @@ import Masonry from '@mui/lab/Masonry';
 import { Parallax } from 'react-scroll-parallax';
 import SlideButton from '../components/SlideButton';
 
+import { useTranslation } from 'next-i18next';
+
 import XunWorkingImg from '../public/images/xun-working.jpg';
 
 import works from '../data/works.json';
 
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 const Home: NextPage = () => {
+	const { t } = useTranslation('home');
+	const { t: tCommon } = useTranslation('common');
 	return (
 		<>
 			<video autoPlay muted loop className='fixed w-full h-screen object-cover -z-10'>
@@ -22,7 +28,7 @@ const Home: NextPage = () => {
 				<section className='relative w-full h-screen grid sm:grid-cols-2 justify-items-start align-end sm:flex-row sm:justify-between items-end p-10 sm:p-20'>
 					<h1 className='text-stone-300 text-3xl'>王尋<br />Xun Wang</h1>
 					<a className="sm:justify-self-end" href="https://youtu.be/rXdJrMFju5Y" target='_blank' rel="noopener noreferrer" >
-						<SlideButton>Watch Full Documentary on YouTube</SlideButton>
+						<SlideButton>{t('watchFullDoc')}</SlideButton>
 					</a>
 				</section>
 			</Parallax>
@@ -35,8 +41,8 @@ const Home: NextPage = () => {
 					</Parallax>
 					<Parallax speed={-5}>
 						<div className='flex flex-col gap-4 opacity-70 text-sm col-start-2'>
-							<p>{'Born in the era of traditional art craftsmanship alongside the rise of digital development, Xun Wang has combined both forms of media. After studying at the sculpture department at the National Taiwan University of Arts, he developed the ability to sculpt human figures and acquired expertise in the art of sculpting. Striving to innovate in his artistic path, Xun Wang went abroad for further studies. '}</p>
-							<p>{'After graduating from the New York Institute of Technology, he worked in well-known visual effects companies. This allowed him to develop his skills in 3D animation and digital art production. These experiences inspired him to merge traditional and digital art mediums. Through continuous exploration based on traditional skills, coupled with high-tech expertise, he cultivated a set of unique personal cross-generational artworks, which he calls the "Space in Time" sculptures.'}</p>
+							<p>{t('artistDescription1')}</p>
+							<p>{t('artistDescription2')}</p>
 						</div>
 					</Parallax>
 				</section>
@@ -50,7 +56,7 @@ const Home: NextPage = () => {
 									</div>
 									<div className='justify-self-end'>{work.year}</div>
 									<Link href={`/work/${work.id}`}><a className='justify-self-end self-end col-span-full'>
-										<SlideButton className='p-1.5'>See More</SlideButton></a>
+										<SlideButton className='p-1.5'>{tCommon('seeMore')}</SlideButton></a>
 									</Link>
 								</div>
 								<img className='w-full' alt={work.name} src={`/images/works/${work.id}/1.jpg`} />
@@ -63,4 +69,13 @@ const Home: NextPage = () => {
 	)
 }
 
-export default Home
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+	return {
+		props: {
+			...(await serverSideTranslations(locale as string, ['home', 'common'])),
+			// Will be passed to the page component as props
+		},
+	};
+}
+
+export default Home;
