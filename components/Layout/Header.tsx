@@ -3,9 +3,10 @@ import { useRouter } from "next/router";
 
 import useScroll from "../../hooks/useScroll";
 
-const routeColor: any = {
+const routeOptions: any = {
     '/': {
-        color: 'white'
+        color: 'black',
+        noDisplay: true,
     }
 }
 
@@ -13,10 +14,10 @@ const Header = () => {
     const router = useRouter();
 
     const scroll = useScroll();
-
+    console.log(scroll);
     return (
-        <header className="fixed flex w-full p-4 z-50 transition-background ease-in-out duration-300" style={{
-            color: routeColor[router.asPath] && !scroll ? routeColor[router.asPath].color : 'inherit',
+        <header className="fixed flex w-full p-4 transition-background ease-in-out duration-300 z-50" style={{
+            color: routeOptions[router.asPath] && !scroll ? routeOptions[router.asPath].color : 'inherit',
             backgroundColor: !scroll ? 'rgba(255, 255, 255, 0)' : 'rgba(255, 255, 255, .2)',
             backdropFilter: !scroll ? undefined : 'blur(2px)'
         }}>
