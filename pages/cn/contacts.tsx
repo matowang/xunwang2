@@ -1,0 +1,77 @@
+import type { NextPage } from 'next'
+
+const Contacts: NextPage = () => {
+    return (
+        <div>
+            <p>聯絡</p>
+            <p>聯絡</p>
+            <p>聯絡</p>
+            <p>聯絡</p>
+            <p>聯絡</p>
+            <p>聯絡</p>
+            <p>聯絡</p>
+            <p>聯絡</p>
+            <p>聯絡</p>
+            <p>聯絡</p>
+            <p>聯絡</p>
+            <p>聯絡</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+            <p>Contacts</p>
+        </div>
+    )
+}
+
+export default Contacts;

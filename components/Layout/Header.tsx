@@ -13,8 +13,8 @@ const routeOptions: any = {
 
 const Header = () => {
     const router = useRouter();
-    const { t, i18n } = useTranslation('common');
     const scroll = useScroll();
+    const isEnglish = router.locale === 'en';
     return (
         <header className="fixed flex w-full p-4 transition-background ease-in-out duration-300 z-50 text-white" style={{
             color: routeOptions[router.asPath] && !scroll ? routeOptions[router.asPath].color : 'white',
@@ -33,7 +33,7 @@ const Header = () => {
                 </li>
                 <div>|</div>
                 <li>
-                    <Link href={router.asPath} locale={i18n.language === 'en' ? 'cn' : 'en'}><a>{t('changeLang')}</a></Link>
+                    <Link href={router.asPath} locale={isEnglish ? 'cn' : 'en'}><a>{isEnglish ? '中文' : 'English'}</a></Link>
                 </li>
             </ul>
         </header>
