@@ -20,7 +20,7 @@ const Love2 = () => {
             <h1>{t('name')}</h1>
             <p>{t('medium')}</p>
             <p>{t('size')}</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-1 md:gap-4">
                 <Image src={imageOne} alt="competition" />
                 <Image src={imageTwo} alt="competition" />
                 <Image src={imageThree} alt="competition" />
