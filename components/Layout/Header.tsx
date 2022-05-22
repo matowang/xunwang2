@@ -95,16 +95,16 @@ const Header = () => {
                     className="box-border flex flex-col items-end gap-4 px-4 bg-black absolute right-0 top-0 h-64">
                     {linksTransitions((styles, route) => (
                         <animated.li style={styles}>
-                            <Link href={route.href}><a>{route.name}</a></Link>
+                            <Link href={route.href}><a className="outline-white outline-1 hover:outline">{route.name}</a></Link>
                         </animated.li>
                     ))}
                     <animated.hr className="w-full" style={subLinksStyles} />
-                    <animated.li style={subLinksStyles} className='text-right'>
+                    <animated.li style={subLinksStyles} className='text-right outline-white outline-1 hover:outline'>
                         <Link href={router.asPath} locale={isEnglish ? 'cn' : 'en'}><a>{isEnglish ? '中文' : 'English'}</a></Link>
                     </animated.li>
                 </animated.ul>
                 <Link href={router.asPath} locale={isEnglish ? 'cn' : 'en'}>
-                    <a className="mr-8">{isEnglish ? '中文' : 'English'}</a>
+                    <a className="mr-8 outline-white outline-1 hover:outline">{isEnglish ? '中文' : 'English'}</a>
                 </Link>
                 <button className="" onClick={toggleMenu}>
                     <Hamburger open={menuOpen} />
