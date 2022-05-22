@@ -33,7 +33,7 @@ const Home: NextPage = () => {
 				</section>
 			</Parallax>
 			<div className='bg-black text-white'>
-				<section className='items-center grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto gap-10 px-5 md:py-60'>
+				<section className='items-center grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto gap-10 px-5 py-20 md:py-60'>
 					<Parallax speed={10}>
 						<div className=''>
 							<Image src={XunWorkingImg} alt='xun wang working' width={2000} height={1333} placeholder='blur' />
