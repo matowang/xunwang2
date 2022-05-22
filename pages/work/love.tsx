@@ -6,14 +6,14 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { GetStaticProps } from 'next';
 
-import imageOne from '../../public/images/works/love-2/1.jpg';
-import imageTwo from '../../public/images/works/love-2/2.jpg';
-import imageThree from '../../public/images/works/love-2/3.jpg';
+import imageOne from '../../public/images/works/love/1.jpg';
+import imageTwo from '../../public/images/works/love/2.jpg';
+import imageThree from '../../public/images/works/love/3.jpg';
 
 
-const Love2 = () => {
+const Love = () => {
 
-    const { t } = useTranslation('workLove2');
+    const { t } = useTranslation('workLove');
 
     return (
         <ArticleLayout>
@@ -36,10 +36,10 @@ const Love2 = () => {
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
     return {
         props: {
-            ...(await serverSideTranslations(locale as string, ['workLove2', 'common'])),
+            ...(await serverSideTranslations(locale as string, ['workLove', 'common'])),
             // Will be passed to the page component as props
         },
     };
 }
 
-export default Love2;
+export default Love;
