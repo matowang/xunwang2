@@ -92,7 +92,7 @@ const Header = () => {
                 {menuOpen && <div onClick={() => setMenuOpen(false)} className="fixed h-screen w-full" />}
                 <h1 className="grow"><Link href="/"><a>Xun Wang</a></Link></h1>
                 <animated.ul style={menuStyles}
-                    className="box-border flex flex-col items-end gap-4 px-4 bg-black absolute right-0 top-0 h-64">
+                    className="box-border flex flex-col items-end gap-4 px-4 bg-black absolute right-0 top-0 h-64 overflow-hidden">
                     {linksTransitions((styles, route) => (
                         <animated.li style={styles}>
                             <Link href={route.href}><a className="outline-white outline-1 hover:outline">{route.name}</a></Link>
