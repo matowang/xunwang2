@@ -10,7 +10,8 @@ import { useTranslation } from 'next-i18next';
 
 import XunWorkingImg from '../public/images/xun-working.jpg';
 
-import works from '../data/works.json';
+//import works from '../data/works.json';
+import works from '../data/works';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -50,7 +51,10 @@ const Home: NextPage = () => {
 					<Masonry columns={{ xs: 1, sm: 3, md: 4 }} spacing={{ xs: 0, sm: 1, md: 2 }}>
 						{works.map(work => (
 							<div className='group relative text-white py-2 sm:py-0' key={work.id}>
-								<div className='hidden group-hover:grid grid-rows-2 grid-cols-2 absolute bg-black/50 w-full h-full p-8'>
+								<div>
+									<Image alt={work.name} src={work.staticImage} placeholder='blur' sizes='600px' />
+								</div>
+								<div className='hidden group-hover:grid grid-rows-2 grid-cols-2 absolute bg-black/50 w-full h-full p-8 top-0'>
 									<div className=''>
 										<h2>{work.cnName}<br />{work.name}</h2>
 									</div>
@@ -59,7 +63,6 @@ const Home: NextPage = () => {
 										<SlideButton className='p-1.5'>{tCommon('seeMore')}</SlideButton></a>
 									</Link>
 								</div>
-								<img className='w-full' alt={work.name} src={`/images/works/${work.id}/1.jpg`} />
 							</div>
 						))}
 					</Masonry>
