@@ -6,13 +6,12 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { GetStaticProps } from 'next';
 
-const name = 'surpass';
-const translationPath = 'workSurpass';
-
 import imageOne from '../../public/images/works/surpass/1.jpg'
 import imageTwo from '../../public/images/works/surpass/2.jpg';
 import imageThree from '../../public/images/works/surpass/3.jpg';
 
+const name = 'surpass';
+const translationPath = 'workSurpass';
 
 const Surpass = () => {
 
@@ -24,14 +23,14 @@ const Surpass = () => {
             <p>{t('medium')}</p>
             <p>{t('size')}</p>
             <div className="grid grid-cols-3 gap-1 md:gap-4">
-                <Image src={imageOne} alt={name} />
-                <Image src={imageTwo} alt={name} />
-                <Image src={imageThree} alt={name} />
+                <Image src={imageOne} alt={name} placeholder={'blur'} sizes='30vw' />
+                <Image src={imageTwo} alt={name} placeholder={'blur'} sizes='30vw' />
+                <Image src={imageThree} alt={name} placeholder={'blur'} sizes='30vw' />
             </div>
             <p>{t('description1')}</p>
-            <Image src={imageOne} alt={name} className='w-full' />
-            <Image src={imageTwo} alt={name} />
-            <Image src={imageThree} alt={name} />
+            <Image src={imageOne} alt={name} placeholder={'blur'} />
+            <Image src={imageTwo} alt={name} placeholder={'blur'} />
+            <Image src={imageThree} alt={name} placeholder={'blur'} />
         </ArticleLayout>
     )
 }

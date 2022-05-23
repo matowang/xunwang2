@@ -6,7 +6,7 @@ interface MDXLayoutProps {
 
 const MDXLayout = ({ children }: MDXLayoutProps) => {
     return (
-        <article className="mdx-article max-w-5xl m-auto py-40 px-2">{children}</article>
+        <article className="mdx-article max-w-5xl m-auto py-40 px-2 relative">{children}</article>
     )
 }
 

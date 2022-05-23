@@ -6,13 +6,12 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { GetStaticProps } from 'next';
 
-const name = 'reach';
-const translationPath = 'workReach';
-
 import imageOne from '../../public/images/works/reach/1.jpg'
 import imageTwo from '../../public/images/works/reach/2.jpg';
 import imageThree from '../../public/images/works/reach/3.jpg';
 
+const name = 'reach';
+const translationPath = 'workReach';
 
 const Reach = () => {
 

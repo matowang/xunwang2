@@ -6,14 +6,14 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { GetStaticProps } from 'next';
 
-import imageOne from '../../public/images/works/expecting/1.jpg';
-import imageTwo from '../../public/images/works/expecting/2.jpg';
-import imageThree from '../../public/images/works/expecting/3.jpg';
+import imageOne from '../../public/images/works/turning-around/1.jpg'
+import imageTwo from '../../public/images/works/turning-around/2.jpg';
+import imageThree from '../../public/images/works/turning-around/3.jpg';
 
-const name = 'expecting';
-const translationPath = 'workExpecting';
+const name = 'turning-around';
+const translationPath = 'workTurningAround';
 
-const Expecting = () => {
+const TurningAround = () => {
 
     const { t } = useTranslation(translationPath);
 
@@ -28,9 +28,9 @@ const Expecting = () => {
                 <Image src={imageThree} alt={name} placeholder={'blur'} sizes='30vw' />
             </div>
             <p>{t('description1')}</p>
-            <Image src={imageOne} alt={name} placeholder={'blur'} />
-            <Image src={imageTwo} alt={name} placeholder={'blur'} />
-            <Image src={imageThree} alt={name} placeholder={'blur'} />
+            <Image src={imageOne} alt={name} placeholder={'blur'} layout='responsive' />
+            <Image src={imageTwo} alt={name} placeholder={'blur'} layout='responsive' />
+            <Image src={imageThree} alt={name} placeholder={'blur'} layout='responsive' />
         </ArticleLayout>
     )
 }
@@ -44,4 +44,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     };
 }
 
-export default Expecting;
+export default TurningAround;

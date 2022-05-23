@@ -10,10 +10,12 @@ import imageOne from '../../public/images/works/love-2/1.jpg';
 import imageTwo from '../../public/images/works/love-2/2.jpg';
 import imageThree from '../../public/images/works/love-2/3.jpg';
 
+const name = 'love-2';
+const translationPath = 'workLove2';
 
 const Love2 = () => {
 
-    const { t } = useTranslation('workLove2');
+    const { t } = useTranslation(translationPath);
 
     return (
         <ArticleLayout>
@@ -21,14 +23,14 @@ const Love2 = () => {
             <p>{t('medium')}</p>
             <p>{t('size')}</p>
             <div className="grid grid-cols-3 gap-1 md:gap-4">
-                <Image src={imageOne} alt="competition" />
-                <Image src={imageTwo} alt="competition" />
-                <Image src={imageThree} alt="competition" />
+                <Image src={imageOne} alt={name} placeholder={'blur'} sizes='30vw' />
+                <Image src={imageTwo} alt={name} placeholder={'blur'} sizes='30vw' />
+                <Image src={imageThree} alt={name} placeholder={'blur'} sizes='30vw' />
             </div>
             <p>{t('description1')}</p>
-            <Image src={imageOne} alt="competition" className='w-full' />
-            <Image src={imageTwo} alt="competition" />
-            <Image src={imageThree} alt="competition" />
+            <Image src={imageOne} alt={name} placeholder={'blur'} />
+            <Image src={imageTwo} alt={name} placeholder={'blur'} />
+            <Image src={imageThree} alt={name} placeholder={'blur'} />
         </ArticleLayout>
     )
 }
@@ -36,7 +38,7 @@ const Love2 = () => {
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
     return {
         props: {
-            ...(await serverSideTranslations(locale as string, ['workLove2', 'common'])),
+            ...(await serverSideTranslations(locale as string, [translationPath, 'common'])),
             // Will be passed to the page component as props
         },
     };

@@ -6,14 +6,14 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { GetStaticProps } from 'next';
 
-import imageOne from '../../public/images/works/expecting/1.jpg';
-import imageTwo from '../../public/images/works/expecting/2.jpg';
-import imageThree from '../../public/images/works/expecting/3.jpg';
+import imageOne from '../../public/images/works/coopetition/1.jpg'
+import imageTwo from '../../public/images/works/coopetition/2.jpg';
+import imageThree from '../../public/images/works/coopetition/3.jpg';
 
-const name = 'expecting';
-const translationPath = 'workExpecting';
+const name = 'coopetition';
+const translationPath = 'workCoopetition';
 
-const Expecting = () => {
+const Coopetition = () => {
 
     const { t } = useTranslation(translationPath);
 
@@ -44,4 +44,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     };
 }
 
-export default Expecting;
+export default Coopetition;
