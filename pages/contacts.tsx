@@ -11,7 +11,7 @@ const Contacts: NextPage = () => {
     return (
         <div className="h-screen w-full flex justify-center flex-col relative overflow-hidden">
             <div className='w-auto h-screen absolute right-0'>
-                <Image src={BGImage} className='h-full object-cover object-bottom' layout='raw' />
+                <Image src={BGImage} className='h-full object-cover object-bottom' layout='raw' priority placeholder='blur' />
                 <div className='bg-gradient-to-r from-black to-transparent w-full h-full absolute top-0 left-0' />
             </div>
             <div className='relative ml-10 sm:ml-[25%]'>

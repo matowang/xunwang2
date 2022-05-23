@@ -96,12 +96,16 @@ const Header = () => {
                     className="box-border flex flex-col items-end gap-4 px-4 bg-black absolute right-0 top-0 h-64 overflow-hidden">
                     {linksTransitions((styles, route) => (
                         <animated.li style={styles}>
-                            <Link href={route.href}><a className="outline-white outline-1 hover:outline">{route.name}</a></Link>
+                            <Link href={route.href}>
+                                <a onClick={() => setMenuOpen(false)} className="outline-white outline-1 hover:outline">{route.name}</a>
+                            </Link>
                         </animated.li>
                     ))}
                     <animated.hr className="w-full" style={subLinksStyles} />
                     <animated.li style={subLinksStyles} className='text-right outline-white outline-1 hover:outline'>
-                        <Link href={router.asPath} locale={t('changeLangRoute')}><a>{t('changeLang')}</a></Link>
+                        <Link href={router.asPath} locale={t('changeLangRoute')}>
+                            <a onClick={() => setMenuOpen(false)}>{t('changeLang')}</a>
+                        </Link>
                     </animated.li>
                 </animated.ul>
                 <Link href={router.asPath} locale={t('changeLangRoute')}>
