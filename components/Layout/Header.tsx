@@ -3,6 +3,7 @@ import Hamburger from "./Hamburger";
 
 import { useRouter } from "next/router";
 import { useSpring, animated, useChain, useSpringRef, useTransition } from 'react-spring'
+import { useTranslation } from "next-i18next";
 
 import useScroll from "../../hooks/useScroll";
 import { useState } from "react";
@@ -32,7 +33,7 @@ const routes = [
 const Header = () => {
     const router = useRouter();
     const scroll = useScroll();
-    const isEnglish: boolean = router.locale === 'en';
+    const { t } = useTranslation();
 
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
@@ -90,7 +91,7 @@ const Header = () => {
                 backdropFilter: !scroll ? undefined : 'blur(2px)'
             }}>
                 {menuOpen && <div onClick={() => setMenuOpen(false)} className="fixed h-screen w-full" />}
-                <h1 className="grow"><Link href="/"><a>Xun Wang</a></Link></h1>
+                <h1 className="grow"><Link href="/"><a>{t('artistName')}</a></Link></h1>
                 <animated.ul style={menuStyles}
                     className="box-border flex flex-col items-end gap-4 px-4 bg-black absolute right-0 top-0 h-64 overflow-hidden">
                     {linksTransitions((styles, route) => (
@@ -100,11 +101,11 @@ const Header = () => {
                     ))}
                     <animated.hr className="w-full" style={subLinksStyles} />
                     <animated.li style={subLinksStyles} className='text-right outline-white outline-1 hover:outline'>
-                        <Link href={router.asPath} locale={isEnglish ? 'cn' : 'en'}><a>{isEnglish ? '中文' : 'English'}</a></Link>
+                        <Link href={router.asPath} locale={t('changeLangRoute')}><a>{t('changeLang')}</a></Link>
                     </animated.li>
                 </animated.ul>
-                <Link href={router.asPath} locale={isEnglish ? 'cn' : 'en'}>
-                    <a className="mr-8 outline-white outline-1 hover:outline">{isEnglish ? '中文' : 'English'}</a>
+                <Link href={router.asPath} locale={t('changeLangRoute')}>
+                    <a className="mr-8 outline-white outline-1 hover:outline">{t('changeLang')}</a>
                 </Link>
                 <button className="" onClick={toggleMenu}>
                     <Hamburger open={menuOpen} />
