@@ -7,6 +7,7 @@ import { Parallax } from 'react-scroll-parallax';
 import SlideButton from '../components/SlideButton';
 
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 
 import XunWorkingImg from '../public/images/xun-working.jpg';
 
@@ -18,6 +19,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 const Home: NextPage = () => {
 	const { t } = useTranslation('home');
 	const { t: tCommon } = useTranslation('common');
+
+	const { locale } = useRouter();
+
 	return (
 		<>
 			<video autoPlay muted loop className='fixed w-full h-screen object-cover -z-10'>
@@ -27,7 +31,7 @@ const Home: NextPage = () => {
 			<div className='w-full h-screen bg-gradient-to-t from-black via-transparent absolute top-0 left-0' />
 			<Parallax speed={50}>
 				<section className='relative w-full h-screen grid sm:grid-cols-2 justify-items-start align-end sm:flex-row sm:justify-between items-end p-10 sm:p-20'>
-					<h1 className='text-stone-300 text-3xl'>王尋<br />Xun Wang</h1>
+					<h1 className='text-stone-300 text-3xl'>{tCommon('artistName')}</h1>
 					<a className="sm:justify-self-end" href="https://youtu.be/rXdJrMFju5Y" target='_blank' rel="noopener noreferrer" >
 						<SlideButton>{t('watchFullDoc')}</SlideButton>
 					</a>
@@ -56,7 +60,7 @@ const Home: NextPage = () => {
 								</div>
 								<div className='hidden group-hover:grid grid-rows-2 grid-cols-2 absolute bg-black/50 w-full h-full p-8 top-0'>
 									<div className=''>
-										<h2>{work.cnName}<br />{work.name}</h2>
+										<h2>{work[locale + 'Name' as 'enName' | 'cnName'] ?? work.name}</h2>
 									</div>
 									<div className='justify-self-end'>{work.year}</div>
 									<Link href={`/work/${work.id}`}><a className='justify-self-end self-end col-span-full'>

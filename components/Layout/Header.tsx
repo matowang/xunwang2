@@ -6,7 +6,7 @@ import { useSpring, animated, useChain, useSpringRef, useTransition } from 'reac
 import { useTranslation } from "next-i18next";
 
 import useScroll from "../../hooks/useScroll";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 const routeOptions: any = {
     '/': {
@@ -15,25 +15,25 @@ const routeOptions: any = {
     }
 }
 
-const routes = [
-    {
-        name: 'Exhibits',
-        href: '/exhibits'
-    },
-    {
-        name: 'Contacts',
-        href: '/contacts'
-    },
-    {
-        name: 'About',
-        href: '/about'
-    },
-]
-
 const Header = () => {
     const router = useRouter();
     const scroll = useScroll();
     const { t } = useTranslation();
+
+    const routes = useMemo(() => [
+        {
+            name: t('exhibits'),
+            href: '/exhibits'
+        },
+        {
+            name: t('contacts'),
+            href: '/contacts'
+        },
+        {
+            name: 'About',
+            href: '/about'
+        },
+    ], [])
 
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
 

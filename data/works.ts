@@ -14,10 +14,22 @@ import SurpassImage from '../public/images/works/surpass/1.jpg';
 import TurnIntoAdultImage from '../public/images/works/turn-into-adult/1.jpg';
 import TurningAroundImage from '../public/images/works/turning-around/1.jpg';
 
-const works = [
+import { StaticImageData } from 'next/image';
+
+interface Work {
+    id: string;
+    name: string;
+    enName?: string;
+    cnName?: string;
+    year: number;
+    staticImage: StaticImageData;
+}
+
+const works: Work[] = [
     {
         "id": "competition",
         "name": "Competition",
+        "enName": "Competition",
         "cnName": "競爭",
         "year": 2016,
         "staticImage": CompetitionImage
@@ -25,6 +37,7 @@ const works = [
     {
         "id": "coopetition",
         "name": "Coopetition",
+        "enName": "Coopetition",
         "cnName": "競合 ",
         "year": 2017,
         "staticImage": CoopetitionImage
@@ -32,6 +45,7 @@ const works = [
     {
         "id": "love",
         "name": "Love",
+        "enName": "Love",
         "cnName": "愛 ",
         "year": 2020,
         "staticImage": LoveImage
@@ -39,6 +53,7 @@ const works = [
     {
         "id": "love-2",
         "name": "Love 2",
+        "enName": "Love 2",
         "cnName": "愛 2",
         "year": 2020,
         "staticImage": Love2Image
@@ -46,6 +61,7 @@ const works = [
     {
         "id": "expecting",
         "name": "Expecting",
+        "enName": "Expecting",
         "cnName": "期待",
         "year": 2020,
         "staticImage": ExpectingImage
@@ -53,6 +69,7 @@ const works = [
     {
         "id": "first-step",
         "name": "First Step",
+        "enName": "First Step",
         "cnName": "第一步",
         "year": 2020,
         "staticImage": FirstStepImage
@@ -60,6 +77,7 @@ const works = [
     {
         "id": "turn-into-adult",
         "name": "Turn into Adult",
+        "enName": "Turn into Adult",
         "cnName": "轉大人",
         "year": 2020,
         "staticImage": TurnIntoAdultImage
@@ -67,6 +85,7 @@ const works = [
     {
         "id": "seeking",
         "name": "Seeking",
+        "enName": "Seeking",
         "cnName": "找尋",
         "year": 2020,
         "staticImage": SeekingImage
@@ -74,6 +93,7 @@ const works = [
     {
         "id": "turning-around",
         "name": "Turning Around",
+        "enName": "Turning Around",
         "cnName": "翻轉",
         "year": 2020,
         "staticImage": TurningAroundImage
@@ -81,6 +101,7 @@ const works = [
     {
         "id": "indomitable",
         "name": "Indomitable",
+        "enName": "Indomitable",
         "cnName": "頂天立地",
         "year": 2019,
         "staticImage": IndomitableImage
@@ -88,6 +109,7 @@ const works = [
     {
         "id": "surpass",
         "name": "Surpass",
+        "enName": "Surpass",
         "cnName": "跨越",
         "year": 2020,
         "staticImage": SurpassImage
@@ -95,6 +117,7 @@ const works = [
     {
         "id": "reach",
         "name": "Reach",
+        "enName": "Reach",
         "cnName": "觸及",
         "year": 2021,
         "staticImage": ReachImage
@@ -102,6 +125,7 @@ const works = [
     {
         "id": "prosperity",
         "name": "Prosperity",
+        "enName": "Prosperity",
         "cnName": "好孕連連",
         "year": 2021,
         "staticImage": ProsperityImage
@@ -109,6 +133,7 @@ const works = [
     {
         "id": "fulfillment",
         "name": "Fulfillment",
+        "enName": "Fulfillment",
         "cnName": "圓滿",
         "year": 2021,
         "staticImage": FulfillmentImage
@@ -116,6 +141,7 @@ const works = [
     {
         "id": "final-shot",
         "name": "Final Shot",
+        "enName": "Final Shot",
         "cnName": "臨門一腳",
         "year": 2021,
         "staticImage": FinalShotImage

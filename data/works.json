@@ -2,90 +2,105 @@
     {
         "id": "competition",
         "name": "Competition",
+        "enName": "Competition",
         "cnName": "競爭",
         "year": 2016
     },
     {
         "id": "coopetition",
         "name": "Coopetition",
+        "enName": "Coopetition",
         "cnName": "競合 ",
         "year": 2017
     },
     {
         "id": "love",
         "name": "Love",
+        "enName": "Love",
         "cnName": "愛 ",
         "year": 2020
     },
     {
         "id": "love-2",
         "name": "Love 2",
+        "enName": "Love 2",
         "cnName": "愛 2",
         "year": 2020
     },
     {
         "id": "expecting",
         "name": "Expecting",
+        "enName": "Expecting",
         "cnName": "期待",
         "year": 2020
     },
     {
         "id": "first-step",
         "name": "First Step",
+        "enName": "First Step",
         "cnName": "第一步",
         "year": 2020
     },
     {
         "id": "turn-into-adult",
         "name": "Turn into Adult",
+        "enName": "Turn into Adult",
         "cnName": "轉大人",
         "year": 2020
     },
     {
         "id": "seeking",
         "name": "Seeking",
+        "enName": "Seeking",
         "cnName": "找尋",
         "year": 2020
     },
     {
         "id": "turning-around",
         "name": "Turning Around",
+        "enName": "Turning Around",
         "cnName": "翻轉",
         "year": 2020
     },
     {
         "id": "indomitable",
         "name": "Indomitable",
+        "enName": "Indomitable",
         "cnName": "頂天立地",
         "year": 2019
     },
     {
         "id": "surpass",
         "name": "Surpass",
+        "enName": "Surpass",
         "cnName": "跨越",
         "year": 2020
     },
     {
         "id": "reach",
         "name": "Reach",
+        "enName": "Reach",
         "cnName": "觸及",
         "year": 2021
     },
     {
         "id": "prosperity",
         "name": "Prosperity",
+        "enName": "Prosperity",
         "cnName": "好孕連連",
         "year": 2021
     },
     {
         "id": "fulfillment",
         "name": "Fulfillment",
+        "enName": "Fulfillment",
         "cnName": "圓滿",
         "year": 2021
     },
     {
         "id": "final-shot",
         "name": "Final Shot",
+        "enName": "Final Shot",
         "cnName": "臨門一腳",
         "year": 2021
     }
