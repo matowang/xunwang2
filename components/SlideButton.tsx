@@ -24,9 +24,9 @@ const SlideButton = ({ children, onClick, sliderClass, className }: SlideButtonP
             onMouseOver={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
             onClick={onClick}
-            className={`group relative bg-black text-stone-400 p-4 border-2 border-white hover:text-black 
-            transition-colors ease-in-out duration-200 ${className}`} >
-            <animated.div className={`block h-full bg-white absolute top-0 left-0 opacity-50 ${sliderClass}`} style={barStyles}></animated.div>
+            className={`${className} group relative bg-black text-stone-400 py-4 px-6 border-2 border-white hover:text-black 
+            transition-colors ease-in-out duration-200`} >
+            <animated.div className={`${sliderClass} block h-full bg-white absolute top-0 left-0 opacity-50`} style={barStyles}></animated.div>
             <div className='relative'>{children}</div>
         </button>
     )

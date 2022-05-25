@@ -45,9 +45,14 @@ const Home: NextPage = () => {
 						</div>
 					</Parallax>
 					<Parallax speed={-5}>
-						<div className='flex flex-col gap-4 opacity-70 text-sm col-start-2'>
-							<p>{t('artistDescription1')}</p>
-							<p>{t('artistDescription2')}</p>
+						<div className='flex flex-col gap-4 text-sm col-start-2'>
+							<p className='opacity-70'>{t('artistDescription1')}</p>
+							<p className='opacity-70'>{t('artistDescription2')}</p>
+							<Link href='/exhibits'>
+								<a>
+									<SlideButton className='mt-5'>{t('See Exhibit')}</SlideButton>
+								</a>
+							</Link>
 						</div>
 					</Parallax>
 				</section>
@@ -58,13 +63,13 @@ const Home: NextPage = () => {
 								<div>
 									<Image alt={work.name} src={work.staticImage} placeholder='blur' sizes='600px' />
 								</div>
-								<div className='hidden group-hover:grid grid-rows-2 grid-cols-2 absolute bg-black/50 w-full h-full p-8 top-0'>
+								<div className='opacity-0 group-hover:opacity-100 grid transition-opacity grid-rows-2 grid-cols-2 absolute bg-black/30 w-full h-full p-8 top-0'>
 									<div className=''>
 										<h2>{work[locale + 'Name' as 'enName' | 'cnName'] ?? work.name}</h2>
 									</div>
 									<div className='justify-self-end'>{work.year}</div>
 									<Link href={`/work/${work.id}`}><a className='justify-self-end self-end col-span-full'>
-										<SlideButton className='p-1.5'>{tCommon('seeMore')}</SlideButton></a>
+										<SlideButton className='px-2 py-1.5'>{tCommon('seeMore')}</SlideButton></a>
 									</Link>
 								</div>
 							</div>
