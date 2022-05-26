@@ -22,14 +22,12 @@ const Reach = () => {
             <h1>{t('name')}</h1>
             <p>{t('medium')}</p>
             <p>{t('size')}</p>
-            <div className="grid grid-cols-3 gap-1 md:gap-4">
-                <Image src={imageOne} alt={name} placeholder={'blur'} sizes='30vw' />
-                <Image src={imageTwo} alt={name} placeholder={'blur'} sizes='30vw' />
-                <Image src={imageThree} alt={name} placeholder={'blur'} sizes='30vw' />
+            <div className="grid grid-cols-2 gap-1 md:gap-4">
+                <Image src={imageOne} alt={name} placeholder={'blur'} sizes='50vw' />
+                <Image src={imageThree} alt={name} placeholder={'blur'} sizes='50vw' />
             </div>
             <p>{t('description1')}</p>
             <Image src={imageOne} alt={name} placeholder={'blur'} />
-            <Image src={imageTwo} alt={name} placeholder={'blur'} />
             <Image src={imageThree} alt={name} placeholder={'blur'} />
         </ArticleLayout>
     )
