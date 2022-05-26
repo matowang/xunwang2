@@ -28,9 +28,9 @@ const TurningAround = () => {
                 <Image src={imageThree} alt={name} placeholder={'blur'} sizes='30vw' />
             </div>
             <p>{t('description1')}</p>
-            <Image src={imageOne} alt={name} placeholder={'blur'} layout='responsive' />
-            <Image src={imageTwo} alt={name} placeholder={'blur'} layout='responsive' />
-            <Image src={imageThree} alt={name} placeholder={'blur'} layout='responsive' />
+            <Image src={imageOne} alt={name} placeholder={'blur'} />
+            <Image src={imageTwo} alt={name} placeholder={'blur'} />
+            <Image src={imageThree} alt={name} placeholder={'blur'} />
         </ArticleLayout>
     )
 }

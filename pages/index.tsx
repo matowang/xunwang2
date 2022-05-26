@@ -56,7 +56,7 @@ const Home: NextPage = () => {
 						</div>
 					</Parallax>
 				</section>
-				<div className='w-md p-2 max-w-7xl mx-auto'>
+				<div id='works' className='w-md p-2 max-w-7xl mx-auto'>
 					<Masonry columns={{ xs: 1, sm: 3, md: 4 }} spacing={{ xs: 0, sm: 1, md: 2 }}>
 						{works.map(work => (
 							<div className='group relative text-white py-2 sm:py-0' key={work.id}>

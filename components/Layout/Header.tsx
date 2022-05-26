@@ -30,8 +30,8 @@ const Header = () => {
             href: '/contacts'
         },
         {
-            name: 'About',
-            href: '/about'
+            name: t('works'),
+            href: '/#works'
         },
     ], [])
 
