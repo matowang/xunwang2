@@ -25,6 +25,8 @@ const Layout = ({ children }: LayoutProps) => {
                 <meta property="og:image" content={t('/images/xun-working.jpg')} />
                 <meta property="og:description" content={t('artistDescription')} />
                 <meta property="og:locale" content={locale} />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://xunwang.art/" />
                 <meta property="twitter:card" content="summary" />
             </Head>
             <Header />
