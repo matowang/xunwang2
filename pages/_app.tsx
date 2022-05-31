@@ -6,6 +6,7 @@ import Layout from '../components/Layout';
 
 import { ParallaxProvider } from 'react-scroll-parallax';
 import { MDXProvider } from '@mdx-js/react'
+import { StyledEngineProvider } from '@mui/material/styles';
 
 import { appWithTranslation } from 'next-i18next';
 
@@ -18,13 +19,15 @@ const MDXComponents = {
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ParallaxProvider>
-      <MDXProvider components={MDXComponents}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </MDXProvider>
-    </ParallaxProvider>
+    <StyledEngineProvider injectFirst>
+      <ParallaxProvider>
+        <MDXProvider components={MDXComponents}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </MDXProvider>
+      </ParallaxProvider>
+    </StyledEngineProvider>
   )
 }
 
