@@ -45,9 +45,15 @@ const Coopetition = () => {
                 </button>
             </div>
             <p>{t('description1')}</p>
-            <Image src={imageOne} alt={name} placeholder={'blur'} />
-            <Image src={imageTwo} alt={name} placeholder={'blur'} />
-            <Image src={imageThree} alt={name} placeholder={'blur'} />
+            <button onClick={() => setPage(0)}>
+                <Image src={imageOne} alt={name} placeholder={'blur'} />
+            </button>
+            <button onClick={() => setPage(1)}>
+                <Image src={imageTwo} alt={name} placeholder={'blur'} />
+            </button>
+            <button onClick={() => setPage(2)}>
+                <Image src={imageThree} alt={name} placeholder={'blur'} />
+            </button>
             <SlideshowModal
                 imageSrcs={[imageOne, imageTwo, imageThree]}
                 currentSlide={currentPage}
@@ -55,7 +61,7 @@ const Coopetition = () => {
                 closeSlides={closeSlides}
                 nextPage={nextPage}
                 prevPage={prevPage} />
-        </ArticleLayout>
+        </ArticleLayout >
     )
 }
 

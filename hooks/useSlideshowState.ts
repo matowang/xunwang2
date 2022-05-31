@@ -55,9 +55,10 @@ const useSlideshowState = ({ numOfPages }: UseSlideshowStateProps) => {
                 return setCurrentPage(null);
             setCurrentPage(page);
         }
-        router.events.on('routeChangeStart', handleRouteChange);
+        console.log('routeChangeComplete');
+        router.events.on('routeChangeComplete', handleRouteChange);
         return () => {
-            router.events.off('routeChangeStart', handleRouteChange);
+            router.events.off('routeChangeComplete', handleRouteChange);
         }
     }, []);
 

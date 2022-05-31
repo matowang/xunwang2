@@ -1,6 +1,9 @@
 import ArticleLayout from '../../components/ArticleLayout';
 import Image from 'next/image';
 
+import SlideshowModal from '../../components/SlideshowModal';
+import useSlideshowState from '../../hooks/useSlideshowState';
+
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
