@@ -20,20 +20,47 @@ const Competition = () => {
 
     const { t } = useTranslation(translationPath);
 
+    const {
+        currentPage,
+        setPage,
+        closeSlides,
+        nextPage,
+        prevPage,
+    } = useSlideshowState({ numOfPages: 3 });
+
     return (
         <ArticleLayout>
             <h1>{t('name')}</h1>
             <p>{t('medium')}</p>
             <p>{t('size')}</p>
             <div className="grid grid-cols-3 gap-1 md:gap-4">
-                <Image src={imageOne} alt={name} placeholder={'blur'} sizes='30vw' />
-                <Image src={imageTwo} alt={name} placeholder={'blur'} sizes='30vw' />
-                <Image src={imageThree} alt={name} placeholder={'blur'} sizes='30vw' />
+                <button onClick={() => setPage(0)}>
+                    <Image src={imageOne} alt={name} placeholder={'blur'} sizes='30vw' />
+                </button>
+                <button onClick={() => setPage(1)}>
+                    <Image src={imageTwo} alt={name} placeholder={'blur'} sizes='30vw' />
+                </button>
+                <button onClick={() => setPage(2)}>
+                    <Image src={imageThree} alt={name} placeholder={'blur'} sizes='30vw' />
+                </button>
             </div>
             <p>{t('description1')}</p>
-            <Image src={imageOne} alt={name} placeholder={'blur'} />
-            <Image src={imageTwo} alt={name} placeholder={'blur'} />
-            <Image src={imageThree} alt={name} placeholder={'blur'} />
+            <button onClick={() => setPage(0)}>
+                <Image src={imageOne} alt={name} placeholder={'blur'} />
+            </button>
+            <button onClick={() => setPage(1)}>
+                <Image src={imageTwo} alt={name} placeholder={'blur'} />
+            </button>
+            <button onClick={() => setPage(2)}>
+                <Image src={imageThree} alt={name} placeholder={'blur'} />
+            </button>
+            <SlideshowModal
+                imageSrcs={[imageOne, imageTwo, imageThree]}
+                currentSlide={currentPage}
+                setCurrentSlide={setPage}
+                closeSlides={closeSlides}
+                nextPage={nextPage}
+                prevPage={prevPage} />
         </ArticleLayout>
     )
 }

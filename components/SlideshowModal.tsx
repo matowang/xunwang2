@@ -41,7 +41,7 @@ const SlideshowModal = ({ imageSrcs, currentSlide, nextPage, prevPage, closeSlid
         <animated.div style={styles} className='fixed w-full h-screen z-50 top-0 left-0 bg-black'>
             {pageTransition((styles, slide) => (
                 slide !== null && <animated.div style={styles} className="w-full h-full absolute top-0">
-                    <Image src={imageSrcs[slide]} layout="fill" objectFit="contain" />
+                    <Image src={imageSrcs[slide]} layout="fill" objectFit="contain" placeholder='blur' />
                 </animated.div>)
             )}
             <div className='hidden'>

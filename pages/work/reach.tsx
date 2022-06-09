@@ -1,13 +1,16 @@
 import ArticleLayout from '../../components/ArticleLayout';
 import Image from 'next/image';
 
+import SlideshowModal from '../../components/SlideshowModal';
+import useSlideshowState from '../../hooks/useSlideshowState';
+
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { GetStaticProps } from 'next';
 
 import imageOne from '../../public/images/works/reach/1.jpg'
-import imageTwo from '../../public/images/works/reach/2.jpg';
+//import imageTwo from '../../public/images/works/reach/2.jpg';
 import imageThree from '../../public/images/works/reach/3.jpg';
 
 const name = 'reach';
@@ -17,18 +20,41 @@ const Reach = () => {
 
     const { t } = useTranslation(translationPath);
 
+    const {
+        currentPage,
+        setPage,
+        closeSlides,
+        nextPage,
+        prevPage,
+    } = useSlideshowState({ numOfPages: 2 });
+
     return (
         <ArticleLayout>
             <h1>{t('name')}</h1>
             <p>{t('medium')}</p>
             <p>{t('size')}</p>
             <div className="grid grid-cols-2 gap-1 md:gap-4">
-                <Image src={imageOne} alt={name} placeholder={'blur'} sizes='50vw' />
-                <Image src={imageThree} alt={name} placeholder={'blur'} sizes='50vw' />
+                <button onClick={() => setPage(0)}>
+                    <Image src={imageOne} alt={name} placeholder={'blur'} sizes='50vw' />
+                </button>
+                <button onClick={() => setPage(1)}>
+                    <Image src={imageThree} alt={name} placeholder={'blur'} sizes='50vw' />
+                </button>
             </div>
             <p>{t('description1')}</p>
-            <Image src={imageOne} alt={name} placeholder={'blur'} />
-            <Image src={imageThree} alt={name} placeholder={'blur'} />
+            <button onClick={() => setPage(0)}>
+                <Image src={imageOne} alt={name} placeholder={'blur'} />
+            </button>
+            <button onClick={() => setPage(1)}>
+                <Image src={imageThree} alt={name} placeholder={'blur'} />
+            </button>
+            <SlideshowModal
+                imageSrcs={[imageOne, imageThree]}
+                currentSlide={currentPage}
+                setCurrentSlide={setPage}
+                closeSlides={closeSlides}
+                nextPage={nextPage}
+                prevPage={prevPage} />
         </ArticleLayout>
     )
 }
