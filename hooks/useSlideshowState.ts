@@ -16,11 +16,11 @@ const useSlideshowState = ({ numOfPages }: UseSlideshowStateProps) => {
             return router.replace({
                 pathname: router.basePath,
                 query: { ...router.query, slide: 0 }
-            });
+            }, '', { scroll: false });
         router.replace({
             pathname: router.basePath,
             query: { ...router.query, slide: currentPage + 1 }
-        });
+        }, '', { scroll: false });
     }
 
     const prevPage = () => {
@@ -29,22 +29,22 @@ const useSlideshowState = ({ numOfPages }: UseSlideshowStateProps) => {
             return router.replace({
                 pathname: router.basePath,
                 query: { ...router.query, slide: numOfPages - 1 }
-            });
+            }, '', { scroll: false });
         router.replace({
             pathname: router.basePath,
             query: { ...router.query, slide: currentPage - 1 }
-        });
+        }, '', { scroll: false });
     }
 
     const closeSlides = () => {
-        router.push(router.basePath);
+        router.push(router.basePath, '', { scroll: false });
     }
 
     const setPage = (page: number) => {
         router.push({
             pathname: router.basePath,
             query: { ...router.query, slide: page }
-        });
+        }, '', { scroll: false });
     }
 
     useEffect(() => {

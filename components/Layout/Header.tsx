@@ -103,12 +103,12 @@ const Header = () => {
                     ))}
                     <animated.hr className="w-full" style={subLinksStyles} />
                     <animated.li style={subLinksStyles} className='text-right outline-white outline-1 hover:outline'>
-                        <Link href={router.asPath} locale={t('changeLangRoute')}>
+                        <Link href={router.asPath} locale={t('changeLangRoute')} scroll={false}>
                             <a onClick={() => setMenuOpen(false)}>{t('changeLang')}</a>
                         </Link>
                     </animated.li>
                 </animated.ul>
-                <Link href={router.asPath} locale={t('changeLangRoute')}>
+                <Link href={router.asPath} locale={t('changeLangRoute')} scroll={false}>
                     <a className="mr-8 outline-white outline-1 hover:outline">{t('changeLang')}</a>
                 </Link>
                 <button className="" onClick={toggleMenu}>
