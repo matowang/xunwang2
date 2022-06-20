@@ -7,6 +7,7 @@ import Layout from '../components/Layout';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import { MDXProvider } from '@mdx-js/react'
 import { createTheme, StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
+import AlertProvider from '../context/AlertContext';
 
 import { appWithTranslation } from 'next-i18next';
 
@@ -35,17 +36,29 @@ const MUITheme = createTheme({
         },
     },
     components: {
+        MuiLinearProgress: {
+            styleOverrides: {
+                root: {
+                    background: 'none'
+                }
+            }
+        },
         MuiTextField: {
             styleOverrides: {
                 root: {
-                    borderColor: 'white',
+                    borderColor: '#rgba(255,255,255,.75)',
                     '& .MuiOutlinedInput-root': {
                         '& fieldset': {
-                            borderColor: 'white',
+                            borderColor: 'rgba(255,255,255,.75)',
+                            borderRadius: 0,
                         },
                     },
                     '& .MuiInputLabel-outlined': {
-                        color: 'white'
+                        color: 'rgba(255,255,255,.75)'
+                    },
+                    '& .Mui-disabled.MuiOutlinedInput-root': {
+                        background: '#ffffff57',
+                        color: 'rgba(255,255,255,.75)'
                     }
                 },
             },
@@ -58,11 +71,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={MUITheme}>
                 <ParallaxProvider>
-                    <MDXProvider components={MDXComponents}>
-                        <Layout>
-                            <Component {...pageProps} />
-                        </Layout>
-                    </MDXProvider>
+                    <AlertProvider>
+                        <MDXProvider components={MDXComponents}>
+                            <Layout>
+                                <Component {...pageProps} />
+                            </Layout>
+                        </MDXProvider>
+                    </AlertProvider>
                 </ParallaxProvider>
             </ThemeProvider>
         </StyledEngineProvider>
