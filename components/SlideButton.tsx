@@ -1,16 +1,15 @@
-import { MouseEventHandler, useState } from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps, MouseEventHandler, useState } from 'react';
 
 import { ReactNode } from "react";
 import { useSpring, animated } from 'react-spring';
 
-interface SlideButtonProps {
+interface SlideButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
     children: ReactNode;
-    onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
     sliderClass?: string;
     className?: string;
 }
 
-const SlideButton = ({ children, onClick, sliderClass, className }: SlideButtonProps) => {
+const SlideButton = (props: SlideButtonProps) => {
 
     const [hovered, setHovered] = useState<boolean>(false);
 
@@ -23,11 +22,11 @@ const SlideButton = ({ children, onClick, sliderClass, className }: SlideButtonP
         <button
             onMouseOver={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
-            onClick={onClick}
-            className={`${className} group relative bg-black text-stone-400 py-4 px-6 border-2 border-white hover:text-black 
-            transition-colors ease-in-out duration-200`} >
-            <animated.div className={`${sliderClass} block h-full bg-white absolute top-0 left-0 opacity-50`} style={barStyles}></animated.div>
-            <div className='relative'>{children}</div>
+            {...props}
+            className={`${props.className} group relative bg-black text-stone-400 py-4 px-6 border-2 border-white hover:text-black 
+            transition-colors ease-in-out duration-200`}>
+            <animated.div className={`${props.sliderClass} block h-full bg-white absolute top-0 left-0 opacity-50`} style={barStyles}></animated.div>
+            <div className='relative'>{props.children}</div>
         </button>
     )
 }
