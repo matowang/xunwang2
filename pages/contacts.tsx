@@ -9,9 +9,11 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 import BGImage from '../public/images/go-future.png';
 
+import contactFormValidation from '../schemaValidation/contactFormValidation';
+
 import { useAlert } from '../context/AlertContext';
 
-import { FormEventHandler, useState } from 'react';
+import { FormEventHandler, useEffect, useState } from 'react';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -56,12 +58,20 @@ const ContactForm = () => {
     const [state, setState] = useState<FormState>(FormState.FILLING);
     const loading = state === FormState.SENDING;
 
+    const [firstSubmit, setFirstSubmit] = useState(true);
+
+    const [validationErrors, setValidationErrors] = useState<any>({});
+
     const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
-        console.log('sending form');
-        setState(FormState.SENDING);
+        setFirstSubmit(false);
         try {
             const input = { email, name, message };
+            if (!(await validateForm(input)))
+                throw new Error('Invalid Input');
+            console.log('sending form');
+            setState(FormState.SENDING);
+            await validateForm(input);
             const res = await fetch('/api/contact', {
                 method: 'POST',
                 headers: {
@@ -74,9 +84,27 @@ const ContactForm = () => {
             setState(FormState.SENT);
         } catch (error: any) {
             setState(FormState.FILLING);
-            setAlert(`Something went wrong: ${error.message}`);
+            setAlert(`Error: ${error.message}`);
         }
     }
+
+    const validateForm = async (input: any): Promise<boolean> => {
+        const errors: any = {};
+        try {
+            await contactFormValidation.validate(input, { abortEarly: false });
+            setValidationErrors(errors);
+            return true;
+        } catch (error: any) {
+            error.inner.forEach((err: any) => errors[err.path] = true);
+            setValidationErrors(errors);
+            return false;
+        }
+    }
+    useEffect(() => {
+        if (!firstSubmit)
+            validateForm({ email, name, message });
+    }, [firstSubmit, email, name, message])
+
     if (state !== FormState.SENT)
         return (
             <>
@@ -87,6 +115,7 @@ const ContactForm = () => {
                         variant="outlined"
                         label="Email"
                         type="email"
+                        error={validationErrors.email}
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value.trim())}
@@ -95,6 +124,7 @@ const ContactForm = () => {
                     <TextField
                         variant="outlined"
                         label="Name"
+                        error={validationErrors.name}
                         required
                         onChange={(e) => setName(e.target.value)}
                         value={name}
@@ -102,6 +132,7 @@ const ContactForm = () => {
                     <TextField
                         variant="outlined"
                         label="Message"
+                        error={validationErrors.message}
                         onChange={(e) => setMessage(e.target.value)}
                         value={message}
                         disabled={loading} />
