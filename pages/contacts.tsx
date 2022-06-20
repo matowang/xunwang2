@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import { TextField } from '@mui/material';
 import SlideButton from '../components/SlideButton';
@@ -9,7 +10,6 @@ import { FormEventHandler, MouseEventHandler, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import type { GetStaticProps, NextPage } from 'next'
-
 
 const Contacts: NextPage = () => {
     const [email, setEmail] = useState('');
@@ -29,29 +29,45 @@ const Contacts: NextPage = () => {
     }
 
     return (
-        <div className="py-20 flex flex-col items-center align-middle">
-            <form onSubmit={handleSubmit} className="flex flex-col w-full max-w-2xl gap-4 items-stretch">
-                <TextField
-                    variant="outlined"
-                    label="Email"
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value.trim())}
-                    sx={{ borderColor: 'white' }} />
-                <TextField
-                    variant="outlined"
-                    label="Name"
-                    required
-                    onChange={(e) => setName(e.target.value)}
-                    value={name} />
-                <TextField
-                    variant="outlined"
-                    label="Message"
-                    onChange={(e) => setMessage(e.target.value)}
-                    value={message} />
-                <SlideButton type="submit">{"submit"}</SlideButton>
-            </form>
+        <div className="grid md:grid-cols-[34%_1fr] w-full relative">
+            <div className="h-screen w-full md:w-[34%] fixed">
+                <div className="h-full w-full">
+                    <Image src={BGImage} alt="jumping sculpture" layout="fill" objectFit="cover" objectPosition="left" priority placeholder="blur" />
+                </div>
+                <div className='md:hidden h-full w-full bg-gradient-to-r absolute top-0 left-0 from-black from-black to-[rgba(0,0,0,0.5)]' />
+            </div>
+            <div />
+            <div className="px-20 py-40 justify-self-center w-full max-w-2xl relative">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-10">
+                    <h1 className='text-2xl text-white'>Contact me</h1>
+                    <TextField
+                        variant="outlined"
+                        label="Email"
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value.trim())}
+                        sx={{ borderColor: 'white' }} />
+                    <TextField
+                        variant="outlined"
+                        label="Name"
+                        required
+                        onChange={(e) => setName(e.target.value)}
+                        value={name} />
+                    <TextField
+                        variant="outlined"
+                        label="Message"
+                        onChange={(e) => setMessage(e.target.value)}
+                        value={message} />
+                    <SlideButton className="self-end" type="submit">{"Send"}</SlideButton>
+                </form>
+                <a href="https://www.instagram.com/xunwang2000/" target="_blank" rel="noopener noreferrer">
+                    <div className='flex gap-2 mt-24'>
+                        <img src="/images/icons/icons8-instagram.svg" alt="instagram" />
+                        {"See Xun Wang on Instagram"}
+                    </div>
+                </a>
+            </div>
         </div>
     )
     // return (
