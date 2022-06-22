@@ -5,7 +5,12 @@ const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   i18n,
-  experimental: { images: { layoutRaw: true } }
+  experimental: { images: { layoutRaw: true } },
+  webpack: (config) => {
+    config.experiments = config.experiments || {}
+    config.experiments.topLevelAwait = true
+    return config
+  },
 }
 
 const withMDX = require('@next/mdx')({

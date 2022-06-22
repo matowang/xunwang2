@@ -26,6 +26,21 @@ let transporter = nodemailer.createTransport({
 
 const mailForm = async (req: NextApiRequest, res: NextApiResponse) => {
     console.log(process.env.SMTP_HOST);
+
+    //for testing environment
+    if (process.env.SMTP_HOST === 'smtp.ethereal.email') {
+        let testAccount = await nodemailer.createTestAccount();
+        transporter = nodemailer.createTransport({
+            host: "smtp.ethereal.email",
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+                user: testAccount.user, // generated ethereal user
+                pass: testAccount.pass, // generated ethereal password
+            },
+        });
+    }
+
     try {
         const formData = await contactFormValidation.validate(req.body);
         let info = await transporter.sendMail({

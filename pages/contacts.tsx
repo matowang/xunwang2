@@ -71,7 +71,6 @@ const ContactForm = () => {
                 throw new Error('Invalid Input');
             console.log('sending form');
             setState(FormState.SENDING);
-            await validateForm(input);
             const res = await fetch('/api/contact', {
                 method: 'POST',
                 headers: {
