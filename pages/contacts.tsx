@@ -12,8 +12,8 @@ import BGImage from '../public/images/go-future.png';
 import contactFormValidation from '../schemaValidation/contactFormValidation';
 
 import { useAlert } from '../context/AlertContext';
-
-import { FormEventHandler, useEffect, useState } from 'react';
+import { animated, useTrail, useSpring } from 'react-spring'
+import { Children, FormEventHandler, useEffect, useState } from 'react';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -61,6 +61,13 @@ const ContactForm = () => {
     const [firstSubmit, setFirstSubmit] = useState(true);
 
     const [validationErrors, setValidationErrors] = useState<any>({});
+
+    const submitBtnStyles = useSpring({
+        from: { opacity: 0, y: 20 },
+        to: { opacity: 1, y: 0 },
+        delay: 300,
+        config: { mass: 5, tension: 2000, friction: 200 },
+    });
 
     const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
@@ -110,32 +117,39 @@ const ContactForm = () => {
                 {loading && <div className='w-full fixed top-0 left-0'><LinearProgress /></div>}
                 <form onSubmit={handleSubmit} className={`flex flex-col gap-10${loading ? " opacity-50" : ''}`}>
                     <h1 className='text-2xl text-white'>Contact me</h1>
-                    <TextField
-                        variant="outlined"
-                        label="Email"
-                        type="email"
-                        error={validationErrors.email}
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value.trim())}
-                        disabled={loading}
-                    />
-                    <TextField
-                        variant="outlined"
-                        label="Name"
-                        error={validationErrors.name}
-                        required
-                        onChange={(e) => setName(e.target.value)}
-                        value={name}
-                        disabled={loading} />
-                    <TextField
-                        variant="outlined"
-                        label="Message"
-                        error={validationErrors.message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        value={message}
-                        disabled={loading} />
-                    <SlideButton disabled={loading} className="self-end" type="submit">{"Send"}</SlideButton>
+                    <Trail>
+                        <TextField
+                            variant="outlined"
+                            label="Email"
+                            type="email"
+                            error={validationErrors.email}
+                            required
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value.trim())}
+                            disabled={loading}
+                            className="w-full"
+                        />
+                        <TextField
+                            variant="outlined"
+                            label="Name"
+                            error={validationErrors.name}
+                            required
+                            onChange={(e) => setName(e.target.value)}
+                            value={name}
+                            disabled={loading}
+                            className="w-full" />
+                        <TextField
+                            variant="outlined"
+                            label="Message"
+                            error={validationErrors.message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            value={message}
+                            disabled={loading}
+                            className="w-full" />
+                    </Trail>
+                    <animated.div style={submitBtnStyles} className="overflow-hidden self-end">
+                        <SlideButton disabled={loading} type="submit">{"Send"}</SlideButton>
+                    </animated.div>
                 </form>
             </>
         )
@@ -148,6 +162,26 @@ const ContactForm = () => {
                 </a>
             </Link>
         </div>
+    )
+}
+
+const Trail = ({ children }: { children: React.ReactNode }) => {
+    const items = Children.toArray(children)
+    const trail = useTrail(items.length, {
+        config: { mass: 5, tension: 2000, friction: 200 },
+        opacity: 1,
+        x: 0,
+        width: '100%',
+        from: { opacity: 0, x: 20, width: '0%' },
+    })
+    return (
+        <>{
+            trail.map((style, index) => (
+                <animated.div key={index} style={style}>
+                    {items[index]}
+                </animated.div>
+            ))
+        }</>
     )
 }
 
