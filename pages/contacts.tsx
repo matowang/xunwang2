@@ -27,7 +27,7 @@ enum FormState {
 const Contacts: NextPage = () => {
 
     return (
-        <div className="grid md:grid-cols-[34%_1fr] w-full relative">
+        <div className="grid md:grid-cols-[34%_1fr] w-full relative overflow-hidden">
             <div className="h-screen w-full md:w-[34%] fixed">
                 <div className="h-full w-full">
                     <Image src={BGImage} alt="jumping sculpture" layout="fill" objectFit="cover" objectPosition="left" priority placeholder="blur" />
