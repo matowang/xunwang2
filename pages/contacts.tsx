@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { TextField } from '@mui/material';
 import SlideButton from '../components/SlideButton';
-import LinearProgress from '@mui/material/LinearProgress';
 
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
@@ -12,8 +11,8 @@ import BGImage from '../public/images/go-future.png';
 import contactFormValidation from '../schemaValidation/contactFormValidation';
 
 import { useAlert } from '../context/AlertContext';
-import { animated, useTrail, useSpring } from 'react-spring'
-import { Children, FormEventHandler, useEffect, useState } from 'react';
+import { animated, useTrail, useSpring, useTransition } from 'react-spring'
+import { Children, Dispatch, FormEventHandler, SetStateAction, useEffect, useState } from 'react';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -26,6 +25,7 @@ enum FormState {
 }
 
 const Contacts: NextPage = () => {
+
     return (
         <div className="grid md:grid-cols-[34%_1fr] w-full relative">
             <div className="h-screen w-full md:w-[34%] fixed">
@@ -36,7 +36,9 @@ const Contacts: NextPage = () => {
             </div>
             <div />
             <div className="px-10 sm:px-20 py-40 justify-self-center w-full max-w-2xl relative">
-                <ContactForm />
+                <div className="h-[400px] w-full relative">
+                    <FormStates />
+                </div>
                 <a href="https://www.instagram.com/xunwang2000/" target="_blank" rel="noopener noreferrer">
                     <div className='flex gap-2 mt-24'>
                         <img src="/images/icons/icons8-instagram.svg" alt="instagram" />
@@ -48,14 +50,53 @@ const Contacts: NextPage = () => {
     )
 }
 
-const ContactForm = () => {
+const FormStates = () => {
+    const [state, setState] = useState<FormState>(FormState.FILLING);
+
+    const stateTransition = useTransition(state, {
+        from: {
+            opacity: state === FormState.FILLING ? 1 : 0,
+            y: state === FormState.FILLING ? '0vh' : '100vh',
+        },
+        enter: {
+            opacity: 1,
+            y: '0vh'
+        },
+        leave: {
+            opacity: 0,
+            y: '-100vh'
+        },
+    });
+
+    return stateTransition((styles, state) => {
+        if (state === FormState.FILLING)
+            return (
+                <animated.div style={styles} className="w-full absolute">
+                    <ContactForm state={state} setState={setState} />
+                </animated.div>)
+        if (state === FormState.SENDING)
+            return <animated.div style={styles} className="w-full absolute">
+                <p className='text-xl mb-10 mt-20'>Sending...</p>
+            </animated.div>
+        if (state === FormState.SENT)
+            return <animated.div style={styles} className="w-full absolute">
+                <p className='text-xl mb-10 mt-20'><CheckCircleOutlineOutlinedIcon /> Your form has been Sent Successfully</p>
+                <Link href="/">
+                    <a>
+                        <SlideButton className="self-start">{"Back to Home Page "}<LogoutOutlinedIcon /></SlideButton>
+                    </a>
+                </Link>
+            </animated.div>
+    })
+}
+
+const ContactForm = ({ state, setState }: { state: FormState, setState: Dispatch<SetStateAction<FormState>> }) => {
     const setAlert = useAlert();
 
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [message, setMessage] = useState('');
 
-    const [state, setState] = useState<FormState>(FormState.FILLING);
     const loading = state === FormState.SENDING;
 
     const [firstSubmit, setFirstSubmit] = useState(true);
@@ -111,57 +152,43 @@ const ContactForm = () => {
             validateForm({ email, name, message });
     }, [firstSubmit, email, name, message])
 
-    if (state !== FormState.SENT)
-        return (
-            <>
-                {loading && <div className='w-full fixed top-0 left-0'><LinearProgress /></div>}
-                <form onSubmit={handleSubmit} className={`flex flex-col gap-10${loading ? " opacity-50" : ''}`}>
-                    <h1 className='text-2xl text-white'>Contact me</h1>
-                    <Trail>
-                        <TextField
-                            variant="outlined"
-                            label="Email"
-                            type="email"
-                            error={validationErrors.email}
-                            required
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value.trim())}
-                            disabled={loading}
-                            className="w-full"
-                        />
-                        <TextField
-                            variant="outlined"
-                            label="Name"
-                            error={validationErrors.name}
-                            required
-                            onChange={(e) => setName(e.target.value)}
-                            value={name}
-                            disabled={loading}
-                            className="w-full" />
-                        <TextField
-                            variant="outlined"
-                            label="Message"
-                            error={validationErrors.message}
-                            onChange={(e) => setMessage(e.target.value)}
-                            value={message}
-                            disabled={loading}
-                            className="w-full" />
-                    </Trail>
-                    <animated.div style={submitBtnStyles} className="overflow-hidden self-end">
-                        <SlideButton disabled={loading} type="submit">{"Send"}</SlideButton>
-                    </animated.div>
-                </form>
-            </>
-        )
     return (
-        <div>
-            <p className='text-xl mb-10 mt-20'><CheckCircleOutlineOutlinedIcon /> Your form has been Sent Successfully</p>
-            <Link href="/">
-                <a>
-                    <SlideButton className="self-start">{"Back to Home Page "}<LogoutOutlinedIcon /></SlideButton>
-                </a>
-            </Link>
-        </div>
+        <form onSubmit={handleSubmit} className={`flex flex-col gap-10${loading ? " opacity-50" : ''}`}>
+            <h1 className='text-2xl text-white'>Contact me</h1>
+            <Trail>
+                <TextField
+                    variant="outlined"
+                    label="Email"
+                    type="email"
+                    error={validationErrors.email}
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value.trim())}
+                    disabled={loading}
+                    className="w-full"
+                />
+                <TextField
+                    variant="outlined"
+                    label="Name"
+                    error={validationErrors.name}
+                    required
+                    onChange={(e) => setName(e.target.value)}
+                    value={name}
+                    disabled={loading}
+                    className="w-full" />
+                <TextField
+                    variant="outlined"
+                    label="Message"
+                    error={validationErrors.message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    value={message}
+                    disabled={loading}
+                    className="w-full" />
+            </Trail>
+            <animated.div style={submitBtnStyles} className="overflow-hidden self-end">
+                <SlideButton disabled={loading} type="submit">{"Send"}</SlideButton>
+            </animated.div>
+        </form >
     )
 }
 
