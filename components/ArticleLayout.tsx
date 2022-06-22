@@ -1,19 +1,19 @@
 import Head from "next/head";
 import { ReactNode } from "react";
 
-interface MDXLayoutProps {
+interface ArticleLayoutProps {
     children: ReactNode;
 }
 
-const MDXLayout = ({ children }: MDXLayoutProps) => {
+const ArticleLayout = ({ children }: ArticleLayoutProps) => {
     return (
         <>
             <Head>
                 <meta property="og:type" content="article" />
             </Head>
-            <article className="mdx-article max-w-5xl m-auto py-40 px-2 relative">{children}</article>
+            <article className="work-article max-w-5xl m-auto py-40 px-2 relative">{children}</article>
         </>
     )
 }
 
-export default MDXLayout;
+export default ArticleLayout;
