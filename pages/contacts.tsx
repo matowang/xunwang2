@@ -35,7 +35,7 @@ const Contacts: NextPage = () => {
                 <div className='md:hidden h-full w-full bg-gradient-to-r absolute top-0 left-0 from-black to-[rgba(0,0,0,0.5)]' />
             </div>
             <div />
-            <div className="px-20 py-40 justify-self-center w-full max-w-2xl relative">
+            <div className="px-10 sm:px-20 py-40 justify-self-center w-full max-w-2xl relative">
                 <ContactForm />
                 <a href="https://www.instagram.com/xunwang2000/" target="_blank" rel="noopener noreferrer">
                     <div className='flex gap-2 mt-24'>
