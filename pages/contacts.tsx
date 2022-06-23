@@ -13,6 +13,7 @@ import contactFormValidation from '../schemaValidation/contactFormValidation';
 import { useAlert } from '../context/AlertContext';
 import { animated, useTrail, useSpring, useTransition } from 'react-spring'
 import { Children, Dispatch, FormEventHandler, SetStateAction, useEffect, useState } from 'react';
+import { useTranslation } from 'next-i18next';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -31,7 +32,7 @@ type ValidationErrors = {
 }
 
 const Contacts: NextPage = () => {
-
+    const { t } = useTranslation('contacts');
     return (
         <div className="grid md:grid-cols-[34%_1fr] w-full relative overflow-hidden">
             <div className="h-screen w-full md:w-[34%] fixed">
@@ -48,7 +49,7 @@ const Contacts: NextPage = () => {
                 <a href="https://www.instagram.com/xunwang2000/" target="_blank" rel="noopener noreferrer">
                     <div className='flex gap-2 mt-24'>
                         <img src="/images/icons/icons8-instagram.svg" alt="instagram" />
-                        {"See Xun Wang on Instagram"}
+                        {t('see xun wang on instagram')}
                     </div>
                 </a>
             </div>
@@ -58,7 +59,7 @@ const Contacts: NextPage = () => {
 
 const FormStates = () => {
     const [state, setState] = useState<FormState>(FormState.FILLING);
-
+    const { t } = useTranslation('contacts');
     const stateTransition = useTransition(state, {
         from: {
             opacity: state === FormState.FILLING ? 1 : 0,
@@ -82,14 +83,14 @@ const FormStates = () => {
                 </animated.div>)
         if (state === FormState.SENDING)
             return <animated.div style={styles} className="w-full absolute">
-                <p className='text-xl mb-10 mt-20'>Sending...</p>
+                <p className='text-xl mb-10 mt-20'>{t('sending')}</p>
             </animated.div>
         if (state === FormState.SENT)
             return <animated.div style={styles} className="w-full absolute">
-                <p className='text-xl mb-10 mt-20'><CheckCircleOutlineOutlinedIcon /> Your form has been Sent Successfully</p>
+                <p className='text-xl mb-10 mt-20'><CheckCircleOutlineOutlinedIcon /> {t('your form has been sent successfully')}</p>
                 <Link href="/">
                     <a>
-                        <SlideButton className="self-start">{"Back to Home Page "}<LogoutOutlinedIcon /></SlideButton>
+                        <SlideButton className="self-start">{t('back to home page')}<LogoutOutlinedIcon /></SlideButton>
                     </a>
                 </Link>
             </animated.div>
@@ -98,6 +99,8 @@ const FormStates = () => {
 
 const ContactForm = ({ state, setState }: { state: FormState, setState: Dispatch<SetStateAction<FormState>> }) => {
     const setAlert = useAlert();
+
+    const { t } = useTranslation('contacts');
 
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
@@ -160,11 +163,11 @@ const ContactForm = ({ state, setState }: { state: FormState, setState: Dispatch
 
     return (
         <form onSubmit={handleSubmit} className={`flex flex-col gap-10${loading ? " opacity-50" : ''}`}>
-            <h1 className='text-2xl text-white'>Contact me</h1>
+            <h1 className='text-2xl text-white'>{t('contact me')}</h1>
             <Trail>
                 <TextField
                     variant="outlined"
-                    label="Email"
+                    label={t('email')}
                     type="email"
                     error={validationErrors?.email}
                     required
@@ -175,7 +178,7 @@ const ContactForm = ({ state, setState }: { state: FormState, setState: Dispatch
                 />
                 <TextField
                     variant="outlined"
-                    label="Name"
+                    label={t('name')}
                     error={validationErrors?.name}
                     required
                     onChange={(e) => setName(e.target.value)}
@@ -184,7 +187,7 @@ const ContactForm = ({ state, setState }: { state: FormState, setState: Dispatch
                     className="w-full" />
                 <TextField
                     variant="outlined"
-                    label="Message"
+                    label={t('message')}
                     error={validationErrors?.message}
                     onChange={(e) => setMessage(e.target.value)}
                     value={message}
@@ -192,7 +195,7 @@ const ContactForm = ({ state, setState }: { state: FormState, setState: Dispatch
                     className="w-full" />
             </Trail>
             <animated.div style={submitBtnStyles} className="overflow-hidden self-end">
-                <SlideButton disabled={loading} type="submit">{"Send"}</SlideButton>
+                <SlideButton disabled={loading} type="submit">{t('send')}</SlideButton>
             </animated.div>
         </form >
     )
@@ -221,7 +224,7 @@ const Trail = ({ children }: { children: React.ReactNode }) => {
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
     return {
         props: {
-            ...(await serverSideTranslations(locale as string, ['home', 'common'])),
+            ...(await serverSideTranslations(locale as string, ['contacts', 'common'])),
             // Will be passed to the page component as props
         },
     };
