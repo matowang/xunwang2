@@ -33,7 +33,7 @@ const Home: NextPage = () => {
 				<section className='relative w-full h-screen grid sm:grid-cols-2 justify-items-start align-end sm:flex-row sm:justify-between items-end p-10 sm:p-20'>
 					<h1 className='text-stone-300 text-3xl'>{tCommon('artistName')}</h1>
 					<a className="sm:justify-self-end" href="https://youtu.be/rXdJrMFju5Y" target='_blank' rel="noopener noreferrer" >
-						<SlideButton>{t('watchFullDoc')}</SlideButton>
+						<SlideButton><div className='flex items-center gap-2'><img src="/images/icons/icons8-youtube.svg" alt="instagram" className='h-6 w-6 opacity-70' />{t('watchFullDoc')}</div></SlideButton>
 					</a>
 				</section>
 			</Parallax>
