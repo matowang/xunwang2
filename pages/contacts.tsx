@@ -24,6 +24,12 @@ enum FormState {
     SENT,
 }
 
+type ValidationErrors = {
+    email?: boolean,
+    name?: boolean,
+    message?: boolean,
+}
+
 const Contacts: NextPage = () => {
 
     return (
@@ -101,7 +107,7 @@ const ContactForm = ({ state, setState }: { state: FormState, setState: Dispatch
 
     const [firstSubmit, setFirstSubmit] = useState(true);
 
-    const [validationErrors, setValidationErrors] = useState<any>({});
+    const [validationErrors, setValidationErrors] = useState<ValidationErrors>();
 
     const submitBtnStyles = useSpring({
         from: { opacity: 0, y: 20 },
@@ -136,13 +142,13 @@ const ContactForm = ({ state, setState }: { state: FormState, setState: Dispatch
     }
 
     const validateForm = async (input: any): Promise<boolean> => {
-        const errors: any = {};
+        const errors: ValidationErrors = {};
         try {
             await contactFormValidation.validate(input, { abortEarly: false });
             setValidationErrors(errors);
             return true;
         } catch (error: any) {
-            error.inner.forEach((err: any) => errors[err.path] = true);
+            error.inner.forEach((err: { path: 'email' | 'name' | 'message' }) => errors[err.path] = true);
             setValidationErrors(errors);
             return false;
         }
@@ -160,7 +166,7 @@ const ContactForm = ({ state, setState }: { state: FormState, setState: Dispatch
                     variant="outlined"
                     label="Email"
                     type="email"
-                    error={validationErrors.email}
+                    error={validationErrors?.email}
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value.trim())}
@@ -170,7 +176,7 @@ const ContactForm = ({ state, setState }: { state: FormState, setState: Dispatch
                 <TextField
                     variant="outlined"
                     label="Name"
-                    error={validationErrors.name}
+                    error={validationErrors?.name}
                     required
                     onChange={(e) => setName(e.target.value)}
                     value={name}
@@ -179,7 +185,7 @@ const ContactForm = ({ state, setState }: { state: FormState, setState: Dispatch
                 <TextField
                     variant="outlined"
                     label="Message"
-                    error={validationErrors.message}
+                    error={validationErrors?.message}
                     onChange={(e) => setMessage(e.target.value)}
                     value={message}
                     disabled={loading}
