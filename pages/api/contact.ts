@@ -25,8 +25,6 @@ let transporter = nodemailer.createTransport({
 });
 
 const mailForm = async (req: NextApiRequest, res: NextApiResponse) => {
-    console.log(process.env.SMTP_HOST);
-
     //for testing environment
     if (process.env.SMTP_HOST === 'smtp.ethereal.email') {
         let testAccount = await nodemailer.createTestAccount();
