@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { TextField } from '@mui/material';
 import SlideButton from '../components/SlideButton';
+import SquareSpinner from '../components/SquareSpinner';
 
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
@@ -82,8 +83,9 @@ const FormStates = () => {
                     <ContactForm state={state} setState={setState} />
                 </animated.div>)
         if (state === FormState.SENDING)
-            return <animated.div style={styles} className="w-full absolute">
-                <p className='text-xl mb-10 mt-20'>{t('sending')}</p>
+            return <animated.div style={styles} className="w-full absolute flex flex-col items-center">
+                <p className='text-xl mb-10 mt-32'>{t('sending')}</p>
+                <SquareSpinner />
             </animated.div>
         if (state === FormState.SENT)
             return <animated.div style={styles} className="w-full absolute">
