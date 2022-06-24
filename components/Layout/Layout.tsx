@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import Head from 'next/head';
 
 import Header from './Header';
+import Footer from './Footer';
 
 import { useTranslation } from "next-i18next";
 import { useRouter } from 'next/router';
@@ -34,6 +35,7 @@ const Layout = ({ children }: LayoutProps) => {
             </Head>
             <Header />
             {children}
+            <Footer />
         </>
     )
 }
