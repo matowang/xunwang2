@@ -30,7 +30,7 @@ const Footer = () => {
         },
     ].filter((link => link.href !== router.asPath)), [t, router]);
 
-    return <footer className='bg-black pt-32'>
+    return <footer className='bg-black pt-32 relative'>
         <div className='flex flex-col items-center gap-8'>
             <nav>
                 <ul className='flex'>{links.map((link, i) => (
