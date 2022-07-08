@@ -18,7 +18,7 @@ const routeOptions: any = {
 const Header = () => {
     const router = useRouter();
     const scroll = useScroll();
-    const { t } = useTranslation();
+    const { t } = useTranslation('common');
 
     const routes = useMemo(() => [
         {

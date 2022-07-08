@@ -36,13 +36,12 @@ const Contacts: NextPage = () => {
     const { t } = useTranslation('contacts');
     return (
         <div className="grid md:grid-cols-[34%_1fr] w-full relative overflow-hidden">
-            <div className="h-screen w-full md:w-[34%] fixed">
+            <div className="h-screen w-full fixed md:relative ">
                 <div className="h-full w-full">
                     <Image src={BGImage} alt="jumping sculpture" layout="fill" objectFit="cover" objectPosition="left" priority placeholder="blur" />
                 </div>
                 <div className='md:hidden h-full w-full bg-gradient-to-r absolute top-0 left-0 from-black to-[rgba(0,0,0,0.5)]' />
             </div>
-            <div />
             <div className="px-10 sm:px-20 py-40 justify-self-center w-full max-w-2xl relative">
                 <div className="h-[400px] w-full relative">
                     <FormStates />
