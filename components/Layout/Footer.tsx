@@ -30,11 +30,11 @@ const Footer = () => {
         },
     ].filter((link => link.href !== router.asPath)), [t, router]);
 
-    return <footer className='bg-black pt-32 relative'>
+    return <footer className='bg-black pt-32 relative text-xs sm:text-sm'>
         <div className='flex flex-col items-center gap-8'>
             <nav>
                 <ul className='flex'>{links.map((link, i) => (
-                    <li key={`link${link.href}`} className={`px-10 ${i === links.length - 1 ? 'border-none' : 'border-r-2 border-slate-400'}`}>
+                    <li key={`link${link.href}`} className={`px-5 sm:px-10 ${i === links.length - 1 ? 'border-none' : 'border-r-2 border-slate-400'}`}>
                         <Link href={link.href}><a>{link.name}</a></Link>
                     </li>
                 ))
