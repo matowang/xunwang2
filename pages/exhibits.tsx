@@ -1,6 +1,6 @@
 import FullRoomImage from '../public/images/expo/full-room.png';
 
-import Image from 'next/image';
+import Image from "next/image";
 
 import { GetStaticProps, NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -20,10 +20,17 @@ const Page: NextPage = () => {
             <p>{t('Taipei World Trade Center Exhibition Hall 1.')}</p>
             <p>{t('No.5, Sec. 5, Xinyi Rd., Taipei City, TAIWAN')}</p>
             <div className='mt-10'>
-                <Image src={FullRoomImage} placeholder='blur' alt='expo' />
+                <Image
+                    src={FullRoomImage}
+                    placeholder='blur'
+                    alt='expo'
+                    style={{
+                        maxWidth: "100%",
+                        height: "auto"
+                    }} />
             </div>
         </div>
-    )
+    );
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {

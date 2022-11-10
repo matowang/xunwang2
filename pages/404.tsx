@@ -12,12 +12,12 @@ const Custom404 = () => {
         <div className='flex items-center justify-center flex-col h-screen w-full gap-4' >
             <h1 className='text-xl'>{t('404 Not Found')}</h1>
             <Link href="/">
-                <a>
-                    <SlideButton>{t('Back To Home')}</SlideButton>
-                </a>
+
+                <SlideButton>{t('Back To Home')}</SlideButton>
+
             </Link>
         </div >
-    )
+    );
 }
 
 

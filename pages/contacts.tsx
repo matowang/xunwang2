@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from "next/image";
 import { TextField } from '@mui/material';
 import SlideButton from '../components/SlideButton';
 import SquareSpinner from '../components/SquareSpinner';
@@ -38,7 +38,17 @@ const Contacts: NextPage = () => {
         <div className="grid md:grid-cols-[34%_1fr] w-full relative overflow-hidden">
             <div className="h-screen w-full fixed md:relative ">
                 <div className="h-full w-full">
-                    <Image src={BGImage} alt="jumping sculpture" layout="fill" objectFit="cover" objectPosition="left" priority placeholder="blur" />
+                    <Image
+                        src={BGImage}
+                        alt="jumping sculpture"
+                        priority
+                        placeholder="blur"
+                        fill
+                        sizes="100vw"
+                        style={{
+                            objectFit: "cover",
+                            objectPosition: "left"
+                        }} />
                 </div>
                 <div className='md:hidden h-full w-full bg-gradient-to-r absolute top-0 left-0 from-black to-[rgba(0,0,0,0.5)]' />
             </div>
@@ -54,7 +64,7 @@ const Contacts: NextPage = () => {
                 </a>
             </div>
         </div>
-    )
+    );
 }
 
 const FormStates = () => {
@@ -87,15 +97,17 @@ const FormStates = () => {
                 <SquareSpinner />
             </animated.div>
         if (state === FormState.SENT)
-            return <animated.div style={styles} className="w-full absolute">
-                <p className='text-xl mb-10 mt-20'><CheckCircleOutlineOutlinedIcon /> {t('your form has been sent successfully')}</p>
-                <Link href="/">
-                    <a>
+            return (
+                <animated.div style={styles} className="w-full absolute">
+                    <p className='text-xl mb-10 mt-20'><CheckCircleOutlineOutlinedIcon /> {t('your form has been sent successfully')}</p>
+                    <Link href="/">
+
                         <SlideButton className="self-start">{t('back to home page')}<LogoutOutlinedIcon /></SlideButton>
-                    </a>
-                </Link>
-            </animated.div>
-    })
+
+                    </Link>
+                </animated.div>
+            );
+    });
 }
 
 const ContactForm = ({ state, setState }: { state: FormState, setState: Dispatch<SetStateAction<FormState>> }) => {

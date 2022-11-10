@@ -17,7 +17,7 @@ import GirlsFeelingsImage from "../public/images/works/girls-feelings/1.jpg";
 import GoodFortuneImage from "../public/images/works/good-fortune/1.jpg";
 import SunriseSunshineImage from "../public/images/works/sunrise-sunshine/1.jpg";
 
-import { StaticImageData } from "next/image";
+import { StaticImageData } from "next/legacy/image";
 
 interface Work {
 	id: string;
