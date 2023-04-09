@@ -26,6 +26,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import type { GetStaticProps, NextPage } from "next";
+import { Instagram } from "@mui/icons-material";
 
 enum FormState {
   FILLING,
@@ -70,7 +71,7 @@ const Contacts: NextPage = () => {
           rel="noopener noreferrer"
         >
           <div className="mt-24 flex gap-2">
-            <Image src={instagramIcon} alt="instagram" />
+            <Instagram />
             {t("see xun wang on instagram")}
           </div>
         </a>
