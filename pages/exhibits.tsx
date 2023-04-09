@@ -1,5 +1,5 @@
 import FullRoomImage from "../public/images/expo/full-room.png";
-import SkyView from "../public/images/expo/SkyView.jpg";
+import SkyView from "../public/images/expo/skyview.jpg";
 import exibit1 from "../public/images/expo/exhibit-1.jpg";
 import exibit2 from "../public/images/expo/exhibit-2.jpg";
 import exibit3 from "../public/images/expo/exhibit-3.jpg";
