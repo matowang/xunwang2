@@ -8,7 +8,6 @@ import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutli
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
 import BGImage from "../public/images/go-future.png";
-import instagramIcon from "../public/images/icons/icons8-instagram.svg";
 
 import contactFormValidation from "../schemaValidation/contactFormValidation";
 
