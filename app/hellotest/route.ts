@@ -3,6 +3,6 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   console.log("hello");
-  console.log({ name: "John Doe" });
+  console.log({ name: "John Doee" });
   return NextResponse.json({ name: "John Doe" });
 }
