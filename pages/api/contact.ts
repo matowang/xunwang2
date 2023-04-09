@@ -28,6 +28,7 @@ const mailForm = async (req: NextApiRequest, res: NextApiResponse) => {
   //for testing environment
   if (process.env.SMTP_HOST === "smtp.ethereal.email") {
     const testAccount = await createTestAccount();
+    console.log("testAccount", testAccount.user, testAccount.pass);
     transporter = createTransport({
       host: "smtp.ethereal.email",
       port: 587,

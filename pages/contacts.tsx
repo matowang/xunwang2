@@ -170,7 +170,7 @@ const ContactForm = ({
       if (!(await validateForm(input))) throw new Error("Invalid Input");
       console.log("sending form");
       setState(FormState.SENDING);
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/newcontact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
