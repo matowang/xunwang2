@@ -7,11 +7,11 @@ import type { NextApiRequest, NextApiResponse } from "next";
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case "POST":
-      await mailForm(req, res);
-      break;
+      return await mailForm(req, res);
     default:
       res.setHeader("Allow", ["POST"]);
       res.status(405).end(`Method ${req.method} Not Allowed`);
+      return;
   }
 };
 
@@ -25,6 +25,7 @@ let transporter = createTransport({
 });
 
 const mailForm = async (req: NextApiRequest, res: NextApiResponse) => {
+  console.time("request");
   //for testing environment
   if (process.env.SMTP_HOST === "smtp.ethereal.email") {
     const testAccount = await createTestAccount();
@@ -41,7 +42,10 @@ const mailForm = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
+    console.time("validate");
     const formData = await contactFormValidation.validate(req.body);
+    console.timeEnd("validate");
+    console.time("sendMail");
     const info = await transporter.sendMail({
       from: `"${formData.name}" <test@xunwang.art>`, // sender address
       to: "wmatthew123@gmail.com, wmatthew123@gmail.com", // list of receivers
@@ -53,9 +57,11 @@ const mailForm = async (req: NextApiRequest, res: NextApiResponse) => {
         <p>Message: ${formData.message}</p>
         `, // html body
     });
+    console.timeEnd("sendMail");
 
     console.log("Message sent: %s", info.messageId);
     res.status(200).end(JSON.stringify(req.body));
+    console.timeEnd("request");
   } catch (error: any) {
     console.log(error);
     res.status(500).end(error.message);
