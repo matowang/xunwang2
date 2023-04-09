@@ -2,5 +2,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
+  console.log("hello");
+  console.log({ name: "John Doe" });
   return NextResponse.json({ name: "John Doe" });
 }
