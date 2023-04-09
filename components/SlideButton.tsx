@@ -1,11 +1,10 @@
 import {
   ButtonHTMLAttributes,
   DetailedHTMLProps,
-  MouseEventHandler,
   useState,
+  ReactNode,
 } from "react";
 
-import { ReactNode } from "react";
 import { useSpring, animated } from "react-spring";
 
 interface SlideButtonProps

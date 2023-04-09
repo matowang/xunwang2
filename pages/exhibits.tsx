@@ -9,10 +9,8 @@ import Image from "next/image";
 
 import { GetStaticProps, NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
 
 const Page: NextPage = () => {
-  const { t } = useTranslation("exhibit");
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-4 p-10 pt-40">
       {/* <p>{t("get ready for")}</p>

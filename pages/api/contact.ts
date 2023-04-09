@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+import { createTestAccount, createTransport } from "nodemailer";
 
 import contactFormValidation from "../../schemaValidation/contactFormValidation";
 
@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-let transporter = nodemailer.createTransport({
+let transporter = createTransport({
   host: process.env.SMTP_HOST,
   port: 2525,
   auth: {
@@ -27,8 +27,8 @@ let transporter = nodemailer.createTransport({
 const mailForm = async (req: NextApiRequest, res: NextApiResponse) => {
   //for testing environment
   if (process.env.SMTP_HOST === "smtp.ethereal.email") {
-    let testAccount = await nodemailer.createTestAccount();
-    transporter = nodemailer.createTransport({
+    const testAccount = await createTestAccount();
+    transporter = createTransport({
       host: "smtp.ethereal.email",
       port: 587,
       secure: false, // true for 465, false for other ports
@@ -41,7 +41,7 @@ const mailForm = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const formData = await contactFormValidation.validate(req.body);
-    let info = await transporter.sendMail({
+    const info = await transporter.sendMail({
       from: `"${formData.name}" <test@xunwang.art>`, // sender address
       to: "wmatthew123@gmail.com, wmatthew123@gmail.com", // list of receivers
       subject: `${formData.name} has sent a contact form from xunwang.art`, // Subject line

@@ -6,7 +6,6 @@ const contactFormValidation = yup.object().shape({
   message: yup.string(),
 });
 
-export interface ContactFormInput
-  extends yup.InferType<typeof contactFormValidation> {}
+export type ContactFormInput = yup.InferType<typeof contactFormValidation>;
 
 export default contactFormValidation;

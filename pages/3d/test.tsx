@@ -1,3 +1,4 @@
+/* eslint-disable  */
 import { lazy, Suspense, useRef, useState, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";

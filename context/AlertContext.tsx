@@ -8,7 +8,7 @@ interface AlertProviderProps {
   children: ReactNode;
 }
 
-const AlertContext = createContext<ShowAlert>(() => {});
+const AlertContext = createContext<ShowAlert>(() => undefined);
 
 export const useAlert = () => useContext(AlertContext);
 

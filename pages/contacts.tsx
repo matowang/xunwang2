@@ -42,6 +42,7 @@ type ValidationErrors = {
 
 const Contacts: NextPage = () => {
   const { t } = useTranslation("contacts");
+
   return (
     <div className="relative grid w-full overflow-hidden md:grid-cols-[34%_1fr]">
       <div className="fixed h-screen w-full md:relative ">
@@ -184,7 +185,7 @@ const ContactForm = ({
     }
   };
 
-  const validateForm = async (input: any): Promise<boolean> => {
+  const validateForm = async (input: unknown): Promise<boolean> => {
     const errors: ValidationErrors = {};
     try {
       await contactFormValidation.validate(input, { abortEarly: false });
