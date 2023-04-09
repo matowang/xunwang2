@@ -1,5 +1,5 @@
 export interface Work {
-    id: string;
-    name: string;
-    'cnName': string;
+  id: string;
+  name: string;
+  cnName: string;
 }

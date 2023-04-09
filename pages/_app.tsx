@@ -1,31 +1,31 @@
-import '../styles/globals.css'
-import '../styles/main.scss';
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import "../styles/main.scss";
+import type { AppProps } from "next/app";
 
-import Layout from '../components/Layout';
+import Layout from "../components/Layout";
 
-import MUITheme from '../MUITheme';
+import MUITheme from "../MUITheme";
 
-import { ParallaxProvider } from 'react-scroll-parallax';
-import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
-import AlertProvider from '../context/AlertContext';
+import { ParallaxProvider } from "react-scroll-parallax";
+import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
+import AlertProvider from "../context/AlertContext";
 
-import { appWithTranslation } from 'next-i18next';
+import { appWithTranslation } from "next-i18next";
 
 function MyApp({ Component, pageProps }: AppProps) {
-    return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={MUITheme}>
-                <ParallaxProvider>
-                    <AlertProvider>
-                        <Layout>
-                            <Component {...pageProps} />
-                        </Layout>
-                    </AlertProvider>
-                </ParallaxProvider>
-            </ThemeProvider>
-        </StyledEngineProvider>
-    )
+  return (
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={MUITheme}>
+        <ParallaxProvider>
+          <AlertProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </AlertProvider>
+        </ParallaxProvider>
+      </ThemeProvider>
+    </StyledEngineProvider>
+  );
 }
 
 export default appWithTranslation(MyApp);

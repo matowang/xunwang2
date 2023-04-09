@@ -6,12 +6,12 @@ source: https://sketchfab.com/3d-models/suzanne-blender-monkey-29a3463e8d314c8fb
 title: Suzanne Blender Monkey
 */
 
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef } from "react";
+import { useGLTF } from "@react-three/drei";
 
 export default function MonkeyModel({ ...props }) {
-  const group = useRef()
-  const { nodes, materials } = useGLTF('/3d-models/monkey/scene.gltf')
+  const group = useRef();
+  const { nodes, materials } = useGLTF("/3d-models/monkey/scene.gltf");
   return (
     <group ref={group} {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
@@ -21,7 +21,7 @@ export default function MonkeyModel({ ...props }) {
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/3d-models/monkey/scene.gltf')
+useGLTF.preload("/3d-models/monkey/scene.gltf");

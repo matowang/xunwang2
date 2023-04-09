@@ -12,10 +12,10 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 
 const Page: NextPage = () => {
-	const { t } = useTranslation("exhibit");
-	return (
-		<div className='max-w-5xl mx-auto pt-40 p-10 flex gap-4 flex-col'>
-			{/* <p>{t("get ready for")}</p>
+  const { t } = useTranslation("exhibit");
+  return (
+    <div className="mx-auto flex max-w-5xl flex-col gap-4 p-10 pt-40">
+      {/* <p>{t("get ready for")}</p>
 			<h2 className='text-3xl sm:text-5xl md:text-7xl text-gray-100 my-8'>Oct 21-24, 2022.</h2>
 			<h1>
 				<span>{t("next exhibit at")} </span>
@@ -25,25 +25,33 @@ const Page: NextPage = () => {
 			</h1>
 			<p>{t("Taipei World Trade Center Exhibition Hall 1.")}</p>
 			<p>{t("No.5, Sec. 5, Xinyi Rd., Taipei City, TAIWAN")}</p> */}
-			<div className='mt-10 flex flex-col gap-6'>
-				<Image src={FullRoomImage} placeholder='blur' alt='xunwang expo' priority />
-				<Image src={SkyView} placeholder='blur' alt='xunwang expo' />
-				<Image src={exibit1} placeholder='blur' alt='xunwang expo' />
-				<Image src={exibit2} placeholder='blur' alt='xunwang expo' />
-				<Image src={exibit3} placeholder='blur' alt='xunwang expo' />
-				<Image src={exibit4} placeholder='blur' alt='xunwang expo' />
-			</div>
-		</div>
-	);
+      <div className="mt-10 flex flex-col gap-6">
+        <Image
+          src={FullRoomImage}
+          placeholder="blur"
+          alt="xunwang expo"
+          priority
+        />
+        <Image src={SkyView} placeholder="blur" alt="xunwang expo" />
+        <Image src={exibit1} placeholder="blur" alt="xunwang expo" />
+        <Image src={exibit2} placeholder="blur" alt="xunwang expo" />
+        <Image src={exibit3} placeholder="blur" alt="xunwang expo" />
+        <Image src={exibit4} placeholder="blur" alt="xunwang expo" />
+      </div>
+    </div>
+  );
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-	return {
-		props: {
-			...(await serverSideTranslations(locale as string, ["exhibit", "common"])),
-			// Will be passed to the page component as props
-		},
-	};
+  return {
+    props: {
+      ...(await serverSideTranslations(locale as string, [
+        "exhibit",
+        "common",
+      ])),
+      // Will be passed to the page component as props
+    },
+  };
 };
 
 export default Page;
