@@ -16,7 +16,7 @@ const handler = async (req: NextRequest) => {
 const validateContactForm = (data: any) => {
   const { name, email, message } = data;
 
-  if (!name || !email || !message) {
+  if (!name || !email) {
     throw new Error("Missing required fields");
   }
 
