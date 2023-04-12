@@ -1,8 +1,16 @@
-import { createTestAccount, createTransport } from "nodemailer";
+import sgMail from "@sendgrid/mail";
 
 import contactFormValidation from "../../schemaValidation/contactFormValidation";
 
 import type { NextApiRequest, NextApiResponse } from "next";
+
+if (process.env.SENDGRID_API_KEY) {
+  console.log(process.env.SENDGRID_API_KEY);
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+} else {
+  console.log("No SENDGRID_API_KEY found");
+  throw new Error("No SENDGRID_API_KEY found");
+}
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
@@ -15,51 +23,26 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-let transporter = createTransport({
-  host: process.env.SMTP_HOST,
-  port: 2525,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
-
 const mailForm = async (req: NextApiRequest, res: NextApiResponse) => {
   console.time("request");
-  //for testing environment
-  if (process.env.SMTP_HOST === "smtp.ethereal.email") {
-    const testAccount = await createTestAccount();
-    console.log("testAccount", testAccount.user, testAccount.pass);
-    transporter = createTransport({
-      host: "smtp.ethereal.email",
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: testAccount.user, // generated ethereal user
-        pass: testAccount.pass, // generated ethereal password
-      },
-    });
-  }
 
   try {
-    console.time("validate");
     const formData = await contactFormValidation.validate(req.body);
-    console.timeEnd("validate");
     console.time("sendMail");
-    const info = await transporter.sendMail({
-      from: `"${formData.name}" <test@xunwang.art>`, // sender address
-      to: "wmatthew123@gmail.com, wmatthew123@gmail.com", // list of receivers
+    await sgMail.send({
+      to: "wmatthew123@gmail.com", // list of receivers
+      from: `sendgrid@xunwang.art`, // sender address
       subject: `${formData.name} has sent a contact form from xunwang.art`, // Subject line
       text: formData.message, // plain text body
       html: `
-        <p>Sender Name: ${formData.name}</p>
-        <p>Sender Email: ${formData.email}</p>
-        <p>Message: ${formData.message}</p>
-        `, // html body
+          <p>Sender Name: ${formData.name}</p>
+          <p>Sender Email: ${formData.email}</p>
+          <p>Message: ${formData.message}</p>
+          `, // html body
     });
     console.timeEnd("sendMail");
 
-    console.log("Message sent: %s", info.messageId);
+    console.log("Message sent to: %s", formData.name);
     res.status(200).end(JSON.stringify(req.body));
     console.timeEnd("request");
   } catch (error: any) {
