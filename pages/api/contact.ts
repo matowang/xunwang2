@@ -1,53 +1,77 @@
-import sgMail from "@sendgrid/mail";
-
 import contactFormValidation from "../../schemaValidation/contactFormValidation";
 
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-if (process.env.SENDGRID_API_KEY) {
-  console.log(process.env.SENDGRID_API_KEY);
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-} else {
-  console.log("No SENDGRID_API_KEY found");
-  throw new Error("No SENDGRID_API_KEY found");
-}
+export const config = {
+  runtime: "edge",
+};
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextRequest) => {
   switch (req.method) {
     case "POST":
-      return await mailForm(req, res);
+      return await mailForm(req);
     default:
-      res.setHeader("Allow", ["POST"]);
-      res.status(405).end(`Method ${req.method} Not Allowed`);
-      return;
+      return NextResponse.json({ error: "error" }, { status: 400 });
   }
 };
 
-const mailForm = async (req: NextApiRequest, res: NextApiResponse) => {
+const mailForm = async (req: NextRequest) => {
   console.time("request");
 
+  if (!process.env.SENDGRID_API_KEY) {
+    console.log("No SENDGRID_API_KEY found");
+    throw new Error("No SENDGRID_API_KEY found");
+  }
+
   try {
-    const formData = await contactFormValidation.validate(req.body);
+    const data = await req.json();
+    const formData = await contactFormValidation.validate(data);
     console.time("sendMail");
-    await sgMail.send({
-      to: "wmatthew123@gmail.com", // list of receivers
-      from: `sendgrid@xunwang.art`, // sender address
-      subject: `${formData.name} has sent a contact form from xunwang.art`, // Subject line
-      text: formData.message, // plain text body
-      html: `
-          <p>Sender Name: ${formData.name}</p>
-          <p>Sender Email: ${formData.email}</p>
-          <p>Message: ${formData.message}</p>
-          `, // html body
+    await fetch("https://api.sendgrid.com/v3/mail/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.SENDGRID_API_KEY}`,
+      },
+      body: JSON.stringify({
+        personalizations: [
+          {
+            to: [
+              {
+                email: "wmatthew123@gmail.com",
+              },
+            ],
+            subject: `${formData.name} has sent a contact form from xunwang.art`,
+          },
+        ],
+        from: {
+          email: "sendgrid@xunwang.art",
+        },
+        content: [
+          {
+            type: "text/plain",
+            value: formData.message,
+          },
+          {
+            type: "text/html",
+            value: `
+            <p>Sender Name: ${formData.name}</p>
+            <p>Sender Email: ${formData.email}</p>
+            <p>Message: ${formData.message}</p>
+            `,
+          },
+        ],
+      }),
     });
+
     console.timeEnd("sendMail");
 
     console.log("Message sent to: %s", formData.name);
-    res.status(200).end(JSON.stringify(req.body));
     console.timeEnd("request");
+    return NextResponse.json({ message: "Message sent" }, { status: 200 });
   } catch (error: any) {
-    console.log(error);
-    res.status(500).end(error.message);
+    console.log("error", error);
+    return NextResponse.json({ error: "error" }, { status: 400 });
   }
 };
 
