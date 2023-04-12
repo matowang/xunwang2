@@ -1,5 +1,3 @@
-import contactFormValidation from "../../schemaValidation/contactFormValidation";
-
 import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
@@ -15,6 +13,32 @@ const handler = async (req: NextRequest) => {
   }
 };
 
+const validateContactForm = (data: any) => {
+  const { name, email, message } = data;
+
+  if (!name || !email || !message) {
+    throw new Error("Missing required fields");
+  }
+
+  if (name.length > 100) {
+    throw new Error("Name is too long");
+  }
+
+  if (email.length > 100) {
+    throw new Error("Email is too long");
+  }
+
+  if (message.length > 1000) {
+    throw new Error("Message is too long");
+  }
+
+  if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+    throw new Error("Email is invalid");
+  }
+
+  return { name, email, message };
+};
+
 const mailForm = async (req: NextRequest) => {
   console.time("request");
 
@@ -25,7 +49,7 @@ const mailForm = async (req: NextRequest) => {
 
   try {
     const data = await req.json();
-    const formData = await contactFormValidation.validate(data);
+    const formData = validateContactForm(data);
     console.time("sendMail");
     await fetch("https://api.sendgrid.com/v3/mail/send", {
       method: "POST",
@@ -71,7 +95,7 @@ const mailForm = async (req: NextRequest) => {
     return NextResponse.json({ message: "Message sent" }, { status: 200 });
   } catch (error: any) {
     console.log("error", error);
-    return NextResponse.json({ error: "error" }, { status: 400 });
+    return NextResponse.json({ error: error.message }, { status: 400 });
   }
 };
 
