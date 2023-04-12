@@ -40,8 +40,6 @@ const validateContactForm = (data: any) => {
 };
 
 const mailForm = async (req: NextRequest) => {
-  console.time("request");
-
   if (!process.env.SENDGRID_API_KEY) {
     console.log("No SENDGRID_API_KEY found");
     throw new Error("No SENDGRID_API_KEY found");
@@ -50,7 +48,6 @@ const mailForm = async (req: NextRequest) => {
   try {
     const data = await req.json();
     const formData = validateContactForm(data);
-    console.time("sendMail");
     await fetch("https://api.sendgrid.com/v3/mail/send", {
       method: "POST",
       headers: {
@@ -88,10 +85,7 @@ const mailForm = async (req: NextRequest) => {
       }),
     });
 
-    console.timeEnd("sendMail");
-
     console.log("Message sent to: %s", formData.name);
-    console.timeEnd("request");
     return NextResponse.json({ message: "Message sent" }, { status: 200 });
   } catch (error: any) {
     console.log("error", error);
