@@ -1,19 +1,18 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const useHideOnScrolledPage = () => {
   const [renderHeroVideo, setRenderHeroVideo] = useState(true);
 
-  const handleScroll = useCallback(() => {
-    if (window.scrollY < window.innerHeight) return setRenderHeroVideo(true);
-    setRenderHeroVideo(false);
-  }, []);
-
   useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY < window.innerHeight) return setRenderHeroVideo(true);
+      setRenderHeroVideo(false);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [handleScroll]);
+  }, []);
   return { renderHeroVideo };
 };
 
