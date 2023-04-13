@@ -15,32 +15,6 @@ const handler = async (req: NextRequest) => {
   }
 };
 
-const validateContactForm = (data: any) => {
-  const { name, email, message } = data;
-
-  if (!name || !email) {
-    throw new Error("Missing required fields");
-  }
-
-  if (name.length > 100) {
-    throw new Error("Name is too long");
-  }
-
-  if (email.length > 100) {
-    throw new Error("Email is too long");
-  }
-
-  if (message.length > 1000) {
-    throw new Error("Message is too long");
-  }
-
-  if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-    throw new Error("Email is invalid");
-  }
-
-  return { name, email, message };
-};
-
 const mailForm = async (req: NextRequest) => {
   if (!process.env.SENDGRID_API_KEY) {
     console.log("No SENDGRID_API_KEY found");
@@ -49,8 +23,7 @@ const mailForm = async (req: NextRequest) => {
 
   try {
     const data = await req.json();
-    const formData = validateContactForm(data);
-    contactFormValidation.validate(formData);
+    const formData = await contactFormValidation.validate(data);
     await fetch("https://api.sendgrid.com/v3/mail/send", {
       method: "POST",
       headers: {
