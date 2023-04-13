@@ -5,6 +5,7 @@ import Link from "next/link";
 import Masonry from "@mui/lab/Masonry";
 import { Parallax } from "react-scroll-parallax";
 import SlideButton from "../components/SlideButton";
+import HeroVideo from "../components/HeroVideo";
 
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -25,15 +26,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <video
-        autoPlay
-        muted
-        loop
-        className="fixed -z-10 h-screen w-full object-cover"
-      >
-        <source src="/hero-video.mp4" />
-        Your browser does not support the video tag.
-      </video>
+      <HeroVideo />
       <div className="absolute top-0 left-0 h-screen w-full bg-gradient-to-t from-black via-transparent" />
       <Parallax speed={50}>
         <section className="align-end relative grid h-screen w-full items-end justify-items-start p-10 sm:grid-cols-2 sm:flex-row sm:justify-between sm:p-20">
