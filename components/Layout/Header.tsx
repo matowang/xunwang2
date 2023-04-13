@@ -11,19 +11,12 @@ import {
 } from "react-spring";
 import { useTranslation } from "next-i18next";
 
-import useScroll from "../../hooks/useScroll";
 import { useState, useMemo } from "react";
-
-const routeOptions: any = {
-  "/": {
-    color: "white",
-    noDisplay: true,
-  },
-};
+import useHasScrolled from "../../hooks/useHasScrolled";
 
 const Header = () => {
   const router = useRouter();
-  const scroll = useScroll();
+  const { hasScrolled } = useHasScrolled();
   const { t } = useTranslation("common");
 
   const routes = useMemo(
@@ -105,11 +98,7 @@ const Header = () => {
       <header
         className="transition-background fixed z-50 flex w-full p-4 text-white duration-300 ease-in-out"
         style={{
-          color:
-            routeOptions[router.asPath] && !scroll
-              ? routeOptions[router.asPath].color
-              : "white",
-          backdropFilter: !scroll ? undefined : "blur(2px)",
+          backdropFilter: !hasScrolled ? undefined : "blur(2px)",
         }}
       >
         {menuOpen && (
