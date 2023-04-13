@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-//import contactFormValidation from "../../schemaValidation/contactFormValidation";
-
-import yup from "yup";
+import contactFormValidation from "../../schemaValidation/contactFormValidation";
 
 export const config = {
   runtime: "edge",
@@ -52,7 +50,7 @@ const mailForm = async (req: NextRequest) => {
   try {
     const data = await req.json();
     const formData = validateContactForm(data);
-    //contactFormValidation.validate(formData);
+    contactFormValidation.validate(formData);
     await fetch("https://api.sendgrid.com/v3/mail/send", {
       method: "POST",
       headers: {
