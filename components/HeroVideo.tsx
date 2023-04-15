@@ -28,6 +28,8 @@ const HeroVideo = () => {
       style={{
         display: renderHeroVideo ? "block" : "none",
       }}
+      playsInline
+      preload="auto"
     >
       <source src="/hero-video.mp4" />
       Your browser does not support the video tag.
