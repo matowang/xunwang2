@@ -24,12 +24,12 @@ const HeroVideo = () => {
       autoPlay
       muted
       loop
+      playsInline
+      preload="auto"
       className="fixed -z-10 h-screen w-full object-cover"
       style={{
         display: renderHeroVideo ? "block" : "none",
       }}
-      playsInline
-      preload="auto"
     >
       <source src="/hero-video.mp4" />
       Your browser does not support the video tag.
