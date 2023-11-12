@@ -1,26 +1,3 @@
-import Link from "next/link";
-import Image from "next/image";
-import { TextField } from "@mui/material";
-import SlideButton from "../components/SlideButton";
-import SquareSpinner from "../components/SquareSpinner";
-
-import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-
-import BGImage from "../public/images/go-future.png";
-
-import contactFormValidation from "../schemaValidation/contactFormValidation";
-
-import { useAlert } from "../context/AlertContext";
-import { animated, useTrail, useSpring, useTransition } from "react-spring";
-import {
-  Children,
-  Dispatch,
-  FormEventHandler,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
 import { useTranslation } from "next-i18next";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
