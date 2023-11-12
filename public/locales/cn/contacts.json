@@ -1,11 +1,12 @@
 {
-    "contact me": "聯絡我",
-    "email": "電子信箱 Email",
-    "name": "姓名",
-    "message": "訊息",
-    "send": "傳送",
-    "see xun wang on instagram": "在 Instagram 上看王尋",
-    "sending": "傳送中。。。",
-    "your form has been sent successfully": "您的訊息已成功發送",
-    "back to home page": "回到首頁"
+  "contact me": "聯絡我",
+  "email": "電子信箱 Email",
+  "phone": "電話 Phone",
+  "name": "姓名",
+  "message": "訊息",
+  "send": "傳送",
+  "see xun wang on instagram": "在 Instagram 上看王尋",
+  "sending": "傳送中。。。",
+  "your form has been sent successfully": "您的訊息已成功發送",
+  "back to home page": "回到首頁"
 }
