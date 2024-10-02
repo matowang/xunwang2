@@ -30,7 +30,14 @@ const Home: NextPage = () => {
       <div className="absolute top-0 left-0 h-screen w-full bg-gradient-to-t from-black via-transparent" />
       <Parallax speed={50}>
         <section className="align-end relative grid h-screen w-full items-end justify-items-start p-10 sm:grid-cols-2 sm:flex-row sm:justify-between sm:p-20">
-          <h1 className="text-3xl text-stone-300">{tCommon("artistName")}</h1>
+          <div>
+            <h1 className="text-3xl text-stone-300">
+              <div>{tCommon("artistName")}</div>
+              <div>{tCommon("subArtistName")}</div>
+            </h1>
+            <div className="pt-4" />
+            <span className="text-base">{tCommon("realName")} 王健雄</span>
+          </div>
           <a
             className="sm:justify-self-end"
             href="https://youtu.be/rXdJrMFju5Y"

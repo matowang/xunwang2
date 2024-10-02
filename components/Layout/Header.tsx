@@ -108,7 +108,10 @@ const Header = () => {
           />
         )}
         <h1 className="grow">
-          <Link href="/">{t("artistName")}</Link>
+          <Link href="/">
+            <div>{t("artistName")}</div>
+            <div>{t("subArtistName")}</div>
+          </Link>
         </h1>
         <animated.ul
           style={menuStyles}
