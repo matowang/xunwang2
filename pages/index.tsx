@@ -36,7 +36,7 @@ const Home: NextPage = () => {
               <div>{tCommon("subArtistName")}</div>
             </h1>
             <div className="pt-4" />
-            <span className="text-base">{tCommon("realName")} 王健雄</span>
+            <span className="text-base">{tCommon("realName")} 王建雄</span>
           </div>
           <a
             className="sm:justify-self-end"
