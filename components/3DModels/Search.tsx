@@ -20,7 +20,9 @@ type GLTFResult = GLTF & {
 
 export default function Model({ ...props }: JSX.IntrinsicElements["group"]) {
   const group = useRef<any>();
-  const { nodes, materials } = useGLTF("/3d-models/search.gltf") as GLTFResult;
+  const { nodes, materials } = useGLTF(
+    "/3d-models/search.gltf"
+  ) as unknown as GLTFResult;
   return (
     <group ref={group} {...props} dispose={null}>
       <group scale={0}>
