@@ -103,5 +103,81 @@
     "enName": "Final Shot",
     "cnName": "臨門一腳",
     "year": 2021
+  },
+  {
+    "id": "hover",
+    "name": "Hover",
+    "enName": "Hover",
+    "cnName": "懸停",
+    "year": 2023
+  },
+  {
+    "id": "blossom-elegance-1",
+    "name": "Blossom Elegance 1",
+    "enName": "Blossom Elegance 1",
+    "cnName": "女大十八變 - 窈窕淑女 1",
+    "year": 2023
+  },
+  {
+    "id": "blossom-elegance-2",
+    "name": "Blossom Elegance 2",
+    "enName": "Blossom Elegance 2",
+    "cnName": "女大十八變 - 窈窕淑女 2",
+    "year": 2023
+  },
+  {
+    "id": "blossom-elegance-3",
+    "name": "Blossom Elegance 3",
+    "enName": "Blossom Elegance 3",
+    "cnName": "女大十八變 - 窈窕淑女 3"
+  },
+  {
+    "id": "enlightenment",
+    "name": "Enlightenment",
+    "enName": "Enlightenment",
+    "cnName": "天啓",
+    "year": 2023
+  },
+  {
+    "id": "soaring",
+    "name": "Soaring",
+    "enName": "Soaring",
+    "cnName": "扶搖直上",
+    "year": 2023
+  },
+  {
+    "id": "bashful",
+    "name": "Bashful",
+    "enName": "Bashful",
+    "cnName": "羞澀",
+    "year": 2024
+  },
+  {
+    "id": "listening",
+    "name": "Listening",
+    "enName": "Listening",
+    "cnName": "傾聽",
+    "year": 2024
+  },
+  {
+    "id": "hunting",
+    "name": "Hunting",
+    "enName": "Hunting",
+    "cnName": "獵物",
+    "year": 2024
+  },
+  {
+    "id": "reach-2",
+    "name": "Reach 2",
+    "enName": "Reach 2",
+    "cnName": "觸及 2",
+    "year": 2024
+  },
+  {
+    "id": "melting",
+    "name": "Melting",
+    "enName": "Melting",
+    "cnName": "融雪",
+    "year": 2024
   }
 ]

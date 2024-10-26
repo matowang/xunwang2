@@ -15,6 +15,7 @@ import XunWorkingImg from "../public/images/xun-working.jpg";
 import { YouTube } from "@mui/icons-material";
 
 import works from "../data/works";
+const _works = works.toSorted((a, b) => b.year - a.year);
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
@@ -85,7 +86,7 @@ const Home: NextPage = () => {
             columns={{ xs: 1, sm: 3, md: 4 }}
             spacing={{ xs: 0, sm: 1, md: 2 }}
           >
-            {works.map((work) => (
+            {_works.map((work) => (
               <div
                 className="group relative py-2 text-white sm:py-0"
                 key={work.id}

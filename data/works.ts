@@ -16,6 +16,17 @@ import TurningAroundImage from "../public/images/works/turning-around/1.jpg";
 import GirlsFeelingsImage from "../public/images/works/girls-feelings/1.jpg";
 import GoodFortuneImage from "../public/images/works/good-fortune/1.jpg";
 import SunriseSunshineImage from "../public/images/works/sunrise-sunshine/1.jpg";
+import HoverImage from "../public/images/works/hover/1.jpg";
+import BlossomElegance1Image from "../public/images/works/blossom-elegance-1/1.jpg";
+import BlossomElegance2Image from "../public/images/works/blossom-elegance-2/1.jpg";
+import BlossomElegance3Image from "../public/images/works/blossom-elegance-3/1.jpg";
+import EnlightenmentImage from "../public/images/works/enlightenment/1.jpg";
+import SoaringImage from "../public/images/works/soaring/1.jpg";
+import BashfulImage from "../public/images/works/bashful/1.jpg";
+import ListeningImage from "../public/images/works/listening/1.jpg";
+import HuntingImage from "../public/images/works/hunting/1.jpg";
+import Reach2Image from "../public/images/works/reach-2/1.jpg";
+import MeltingImage from "../public/images/works/melting/1.jpg";
 
 import { StaticImageData } from "next/legacy/image";
 
@@ -172,6 +183,94 @@ const works: Work[] = [
     cnName: "臨門一腳",
     year: 2021,
     staticImage: SunriseSunshineImage,
+  },
+  {
+    id: "hover",
+    name: "Hover",
+    enName: "Hover",
+    cnName: "懸停",
+    year: 2023,
+    staticImage: HoverImage,
+  },
+  {
+    id: "blossom-elegance-1",
+    name: "Blossom Elegance 1",
+    enName: "Blossom Elegance 1",
+    cnName: "女大十八變 - 窈窕淑女 1",
+    year: 2023,
+    staticImage: BlossomElegance1Image,
+  },
+  {
+    id: "blossom-elegance-2",
+    name: "Blossom Elegance 2",
+    enName: "Blossom Elegance 2",
+    cnName: "女大十八變 - 窈窕淑女 2",
+    year: 2023,
+    staticImage: BlossomElegance2Image,
+  },
+  {
+    id: "blossom-elegance-3",
+    name: "Blossom Elegance 3",
+    enName: "Blossom Elegance 3",
+    cnName: "女大十八變 - 窈窕淑女 3",
+    year: 2023,
+    staticImage: BlossomElegance3Image,
+  },
+  {
+    id: "enlightenment",
+    name: "Enlightenment",
+    enName: "Enlightenment",
+    cnName: "天啓",
+    year: 2023,
+    staticImage: EnlightenmentImage,
+  },
+  {
+    id: "soaring",
+    name: "Soaring",
+    enName: "Soaring",
+    cnName: "扶搖直上",
+    year: 2023,
+    staticImage: SoaringImage,
+  },
+  {
+    id: "bashful",
+    name: "Bashful",
+    enName: "Bashful",
+    cnName: "羞澀",
+    year: 2024,
+    staticImage: BashfulImage,
+  },
+  {
+    id: "listening",
+    name: "Listening",
+    enName: "Listening",
+    cnName: "傾聽",
+    year: 2024,
+    staticImage: ListeningImage,
+  },
+  {
+    id: "hunting",
+    name: "Hunting",
+    enName: "Hunting",
+    cnName: "獵物",
+    year: 2024,
+    staticImage: HuntingImage,
+  },
+  {
+    id: "reach-2",
+    name: "Reach 2",
+    enName: "Reach 2",
+    cnName: "觸及 2",
+    year: 2024,
+    staticImage: Reach2Image,
+  },
+  {
+    id: "melting",
+    name: "Melting",
+    enName: "Melting",
+    cnName: "融雪",
+    year: 2024,
+    staticImage: MeltingImage,
   },
 ];
 
