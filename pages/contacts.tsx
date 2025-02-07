@@ -9,7 +9,7 @@ const Contacts: NextPage = () => {
 
   return (
     <div className="flex flex-col items-center pt-32">
-      <div>{t("email")}: wangmorris@gmail.com</div>
+      <div>{t("email")}: xunwang2000@gmail.com</div>
       <div>{t("phone")}: +886 958260261</div>
     </div>
   );
