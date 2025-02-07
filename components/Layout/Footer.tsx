@@ -73,14 +73,14 @@ const Footer = () => {
           </div>
         </a>
       </div>
-      <div className="flex items-end justify-between py-20 px-10">
+      <div className="flex items-end justify-between px-10 py-20">
         <Image
           src={SignatureImg}
           alt="xun wang's signature"
           width={150}
           height={80}
         />
-        <p>© 2022 Xun Wang 王尋</p>
+        <p>© {new Date().getFullYear()} Xun Wang 王尋</p>
       </div>
     </footer>
   );
